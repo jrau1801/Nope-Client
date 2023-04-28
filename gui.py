@@ -1,5 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QCheckBox
+from events import *
+
 
 class LoginForm(QWidget):
     def __init__(self):
@@ -22,7 +24,7 @@ class LoginForm(QWidget):
 
         # Create login button
         login_button = QPushButton('Login')
-        login_button.clicked.connect(self.login)
+        login_button.clicked.connect(login(self.username_entry.text(), self.password_entry.text()))
 
         # Add all widgets to layout
         hbox1 = QHBoxLayout()
@@ -57,13 +59,6 @@ class LoginForm(QWidget):
             self.password_entry.setEchoMode(QLineEdit.Normal)
         else:
             self.password_entry.setEchoMode(QLineEdit.Password)
-
-    def login(self):
-        username = self.username_entry.text()
-        password = self.password_entry.text()
-        # Add login code here
-        print("Username:", username)
-        print("Password:", password)
 
 
 if __name__ == '__main__':

@@ -2,21 +2,36 @@ import requests
 import socketio
 import json
 
-data = {"username": "Jan", "password": "123456"}
-
 url = 'https://nope-server.azurewebsites.net/api/auth/login'
-
-response = requests.post(url, json=data)
-
-print(response.json()['accessToken'])
-
-accessToken = response.json()['accessToken']
-
 sio = socketio.Client()
+
+
+def login(name, password):
+    data = {"username": name, "password": password}
+    response = requests.post(url, json=data)
+
+    try:
+        print(response.json()['accessToken'])
+    except KeyError:
+        return False
+
+    accessToken = response.json()['accessToken']
+
+    sio.connect("https://nope-server.azurewebsites.net", namespaces='/', auth={'token': accessToken})
+
+    return True
+
+
+def registration(name, password, firstname, lastname):
+    data = {"username": name, "password": password, "firstname": firstname, "lastname": lastname}
+    response = requests.post(url, json=data)
+
+    print(response)
 
 
 @sio.event
 def connect():
+    # Connect to the server
     print("Connected to server.")
 
 
@@ -54,14 +69,3 @@ def start_tournament():
     print(response)
 
 
-# Connect to the server
-sio.connect("https://nope-server.azurewebsites.net", namespaces='/', auth={'token': accessToken})
-
-# Example usage
-create_tournament(5)
-# join_tournament(1)
-# leave_tournament()
-# start_tournament()
-
-# Disconnect from the server
-sio.disconnect()

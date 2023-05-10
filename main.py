@@ -4,17 +4,17 @@ print("1. Anmelden")
 print("2. Registrieren")
 
 while True:
-    choice = input("Bitte wählen Sie eine Option (1 oder 2): ")
+    choice = input("[1] Login, [2] Registration: ")
 
     if choice == "1":
-        print("Geben Sie Ihre Anmeldedaten ein:")
-        username = input("Benutzername: ")
-        password = input("Passwort: ")
+        print("Login credentials:")
+        # username = input("Benutzername: ")
+        # password = input("Passwort: ")
 
-        if login(username, password):
-            print("Sie haben sich erfolgreich angemeldet!")
-            sio.disconnect()
-        break
+        if login("Jan", "123456"):
+            print("Login successful!")
+            break
+
 
     elif choice == "2":
         print("Bitte geben Sie Ihre Registrierungsdaten ein:")
@@ -28,4 +28,6 @@ while True:
         print("Sie haben sich erfolgreich registriert!")
 
     else:
-        print("Ungültige Eingabe. Bitte wählen Sie 1 oder 2.")
+        print("Invalid input.")
+
+# create_tournament(3)

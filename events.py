@@ -39,16 +39,19 @@ def connect():
 
 @sio.event
 def disconnect():
+    # Disconnect from the server
     print("Disconnected from server.")
 
 
 @sio.event
 def callback(data):
+    # Prints data on acknowledgement
     print(data)
 
 
 @sio.on("list:tournaments")
 def list_tournaments(data, data1):
+    # Lists tournament info for all tournaments
     content = []
     row_content = []
 

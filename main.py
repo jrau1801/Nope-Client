@@ -4,25 +4,39 @@ import time
 
 def tournament_menu():
     while True:
+        # Wait for server
         time.sleep(0.5)
-        print("[1] Create Tournament\n[2] Join Tournament\n[3] Leave Tournament\n[4] Start Tournament: ")
+        print("[1] Create Tournament\n"
+              "[2] Join Tournament\n"
+              "[3] Leave Tournament\n"
+              "[4] Start Tournament\n"
+              "[5] Disconnect: ")
+
         choice = input("Choose: ")
 
+        # Create a tournament
         if choice == "1":
             num_matches = int(input("Number of matches: "))
             create_tournament(num_matches)
 
+        # Join a tournament
         elif choice == "2":
             tournament_id = input("Tournament-ID: ")
             join_tournament(tournament_id)
-            break
 
+        # Leave a tournament
         elif choice == "3":
             leave_tournament()
 
+        # Start a tournament
         elif choice == "4":
             start_tournament()
 
+        elif choice == "5":
+            disconnect()
+
+        else:
+            print("Invalid input.")
 
 
 def login_menu():
@@ -32,6 +46,7 @@ def login_menu():
     while True:
         choice = input("[1] Login, [2] Register: ")
 
+        # Login to the server
         if choice == "1":
             print("Login credentials:")
             # username = input("Benutzername: ")
@@ -42,6 +57,7 @@ def login_menu():
                 tournament_menu()
                 break
 
+        # Register a new user
         elif choice == "2":
             print("Bitte geben Sie Ihre Registrierungsdaten ein:")
             username = input("Benutzername: ")

@@ -30,6 +30,8 @@ def registration(name, password, firstname, lastname):
     print(response)
 
 
+# Server -> Client
+
 @sio.event
 def connect():
     # Connect to the server
@@ -47,14 +49,15 @@ def callback(data):
 
 
 @sio.on("list:tournaments")
-def list_tournaments(data):
-
+def list_tournaments(data, data1):
     # Eine Liste von Turnier-IDs erstellen
     tournament_ids = [tournament['id'] for tournament in data]
 
     # Die Turnier-IDs ausgeben
-    print(tournament_ids)
+    print("\n", tournament_ids)
 
+
+# Client -> Server
 
 # tournament:create
 def create_tournament(num_best_of_matches):
@@ -78,5 +81,3 @@ def leave_tournament():
 def start_tournament():
     response = sio.call("tournament:start")
     print(response)
-
-

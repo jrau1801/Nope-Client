@@ -1,6 +1,5 @@
 import requests
 import socketio
-import sys
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
 register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
@@ -8,23 +7,32 @@ sio = socketio.Client()
 
 
 def login(name, password):
+
+    # Login logic
     data = {"username": name, "password": password}
     response = requests.post(login_url, json=data)
 
+    # Try to get Access-Token
     try:
         print(response.json()['accessToken'])
     except KeyError:
         return False
 
+    # Save Access-Token
     accessToken = response.json()['accessToken']
 
+    # Connect to server
     sio.connect("https://nope-server.azurewebsites.net", namespaces='/', auth={'token': accessToken})
 
     return True
 
 
 def registration(name, password, firstname, lastname):
+
+    # Register Logic
     data = {"username": name, "password": password, "firstname": firstname, "lastname": lastname}
+
+    # Register on server
     response = requests.post(register_url, json=data)
 
     print(response)
@@ -51,7 +59,7 @@ def callback(data):
 
 
 @sio.on("list:tournaments")
-def list_tournaments(data, data1):
+def list_tournaments(data, _):
     # Lists tournament info for all tournaments
     content = []
     row_content = []

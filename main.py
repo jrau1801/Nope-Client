@@ -1,7 +1,9 @@
 from events import *
+import time
 
 
 def in_tournament_menu():
+    time.sleep(0.5)
     leave = input("Leave Tournament?: ")
 
     if leave == "y":
@@ -9,7 +11,9 @@ def in_tournament_menu():
 
 
 def tournament_menu():
+
     while True:
+        time.sleep(0.5)
         print("[1] Create Tournament\n[2] Join Tournament")
         choice = input("Choose: ")
 

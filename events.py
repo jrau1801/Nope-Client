@@ -50,11 +50,22 @@ def callback(data):
 
 @sio.on("list:tournaments")
 def list_tournaments(data, data1):
-    # Eine Liste von Turnier-IDs erstellen
-    tournament_ids = [tournament['id'] for tournament in data]
+    content = []
+    row_content = []
 
-    # Die Turnier-IDs ausgeben
-    print("\n", tournament_ids)
+    for tournament in data:
+        
+        row_content.append(tournament['id'])
+        row_content.append(tournament['status'])
+        
+        for player in tournament["players"]:
+            row_content.append(player["username"])
+
+        content.append(row_content)
+        row_content = []
+        
+    for entry in content:
+        print(entry)
 
 
 # Client -> Server
@@ -74,7 +85,7 @@ def join_tournament(tournament_id):
 # tournament:leave
 def leave_tournament():
     response = sio.call("tournament:leave")
-    print(response)
+    print("TOURNAMENT LEAVE: ", response)
 
 
 # tournament:start

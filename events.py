@@ -1,15 +1,14 @@
 import requests
 import socketio
-import json
 
-loginurl = 'https://nope-server.azurewebsites.net/api/auth/login'
-registerurl = 'https://nope-server.azurewebsites.net/api/auth/register'
+login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
+register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
 sio = socketio.Client()
 
 
 def login(name, password):
     data = {"username": name, "password": password}
-    response = requests.post(loginurl, json=data)
+    response = requests.post(login_url, json=data)
 
     try:
         print(response.json()['accessToken'])
@@ -25,7 +24,7 @@ def login(name, password):
 
 def registration(name, password, firstname, lastname):
     data = {"username": name, "password": password, "firstname": firstname, "lastname": lastname}
-    response = requests.post(registerurl, json=data)
+    response = requests.post(register_url, json=data)
 
     print(response)
 

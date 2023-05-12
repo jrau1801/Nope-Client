@@ -2,19 +2,10 @@ from events import *
 import time
 
 
-def in_tournament_menu():
-    time.sleep(0.5)
-    leave = input("Leave Tournament?: ")
-
-    if leave == "y":
-        leave_tournament()
-
-
 def tournament_menu():
-
     while True:
         time.sleep(0.5)
-        print("[1] Create Tournament\n[2] Join Tournament")
+        print("[1] Create Tournament\n[2] Join Tournament\n[3] Leave Tournament\n[4] Start Tournament: ")
         choice = input("Choose: ")
 
         if choice == "1":
@@ -26,7 +17,12 @@ def tournament_menu():
             join_tournament(tournament_id)
             break
 
-    in_tournament_menu()
+        elif choice == "3":
+            leave_tournament()
+
+        elif choice == "4":
+            start_tournament()
+
 
 
 def login_menu():

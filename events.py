@@ -56,8 +56,6 @@ def list_tournaments(data):
     print(tournament_ids)
 
 
-# Client -> Server
-
 # tournament:create
 def create_tournament(num_best_of_matches):
     response = sio.call("tournament:create", num_best_of_matches)

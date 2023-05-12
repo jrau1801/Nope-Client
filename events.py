@@ -7,7 +7,6 @@ sio = socketio.Client()
 
 
 def login(name, password):
-
     # Login logic
     data = {"username": name, "password": password}
     response = requests.post(login_url, json=data)
@@ -28,7 +27,6 @@ def login(name, password):
 
 
 def registration(name, password, firstname, lastname):
-
     # Register Logic
     data = {"username": name, "password": password, "firstname": firstname, "lastname": lastname}
 
@@ -58,6 +56,16 @@ def callback(data):
     print(data)
 
 
+@sio.on("match:invite")
+def match_invite(data):
+    print(data)
+
+
+@sio.on("match:info")
+def match_info(data, _):
+    print(data)
+
+
 @sio.on("list:tournaments")
 def list_tournaments(data, _):
     # Lists tournament info for all tournaments
@@ -65,16 +73,16 @@ def list_tournaments(data, _):
     row_content = []
 
     for tournament in data:
-        
+
         row_content.append(tournament['id'])
         row_content.append(tournament['status'])
-        
+
         for player in tournament["players"]:
             row_content.append(player["username"])
 
         content.append(row_content)
         row_content = []
-        
+
     for entry in content:
         print(entry)
 

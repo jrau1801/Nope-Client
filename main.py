@@ -33,8 +33,8 @@ def tournament_menu():
             start_tournament()
 
         elif choice == "5":
-            disconnect()
-
+            sio.disconnect()
+            break
         else:
             print("Invalid input.")
 

@@ -1,5 +1,6 @@
 import requests
 import socketio
+import sys
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
 register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
@@ -40,7 +41,7 @@ def connect():
 @sio.event
 def disconnect():
     # Disconnect from the server
-    print("Disconnected from server.")
+    print("Disconnected from server")
 
 
 @sio.event

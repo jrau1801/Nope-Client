@@ -63,18 +63,19 @@ def callback(data):
     print(data)
 
 
-@sio.on("match:invite")
-def match_invite(data):
+@sio.on("tournament:playerInfo")
+def player_info(data):
     print(data)
 
-    global player_id
-    payload = {
-        "accepted": True,
-        "id": player_id
-    }
 
-    # Send the acknowledgement payload using the 'ack' function
-    sio.emit("match:invite", payload)
+@sio.on("tournament:info")
+def tournament_info(data):
+    print(data)
+
+
+@sio.on("match:info")
+def match_info(data):
+    print(data)
 
 
 @sio.on("list:tournaments")

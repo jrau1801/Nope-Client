@@ -49,10 +49,10 @@ def login_menu():
         # Login to the server
         if choice == "1":
             print("Login credentials:")
-            # username = input("Benutzername: ")
-            # password = input("Passwort: ")
+            username = input("Benutzername: ")
+            password = input("Passwort: ")
 
-            if login("Jan", "123456"):
+            if login(username, password):
                 print("Login successful!")
                 tournament_menu()
                 break

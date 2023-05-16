@@ -1,9 +1,13 @@
+import time
+
 import requests
 import socketio
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
 register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
 sio = socketio.Client()
+
+player_id = None
 
 
 def login(name, password):
@@ -14,7 +18,10 @@ def login(name, password):
     # Try to get Access-Token
     try:
         print(response.json()['accessToken'])
-    except KeyError:
+        player = response.json()['user']
+        global player_id
+        player_id = (player['id'])
+    except KeyError or requests.exceptions.JSONDecodeError:
         return False
 
     # Save Access-Token
@@ -60,10 +67,14 @@ def callback(data):
 def match_invite(data):
     print(data)
 
+    global player_id
+    payload = {
+        "accepted": True,
+        "id": player_id
+    }
 
-@sio.on("match:info")
-def match_info(data, _):
-    print(data)
+    # Send the acknowledgement payload using the 'ack' function
+    sio.emit("match:invite", payload)
 
 
 @sio.on("list:tournaments")

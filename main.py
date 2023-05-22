@@ -5,8 +5,7 @@ import time
 def play_menu():
     print("TOURNAMENT STARTED")
     while True:
-        print("1")
-        time.sleep(4000)
+        pass
 
 
 def tournament_menu():

@@ -121,8 +121,10 @@ def make_move(data):
 
 
 @sio.on("game:state")
-def game_state(data):
-    print(data['hand'])
+def game_state(data, _):
+
+    for card in data['hand']:
+        print(card['type'], card['color'], card['value'])
 
 
 # Client -> Server

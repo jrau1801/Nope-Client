@@ -123,6 +123,7 @@ def list_tournaments(data, _):
 
         for entry in content:
             print(entry)
+        print("\n")
 
 
 @sio.on("game:makeMove")

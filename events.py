@@ -119,6 +119,7 @@ def make_move(data):
     print(data['message'])
     return "1"
 
+
 # Client -> Server
 
 # tournament:create

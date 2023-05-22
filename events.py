@@ -64,18 +64,33 @@ def callback(data):
 
 
 @sio.on("tournament:playerInfo")
-def player_info(data):
-    print(data)
+def player_info(data, _):
+    print("PLAYER INFO: ")
+    print(data['message'])
+    print("-" * 20)
 
 
 @sio.on("tournament:info")
-def tournament_info(data):
-    print(data)
+def tournament_info(data, _):
+    print("TOURNAMENT INFO: ")
+    print(data['message'])
+    print(data['status'])
+    print("-" * 20)
 
 
 @sio.on("match:info")
-def match_info(data):
-    print(data)
+def match_info(data, _):
+    print("MATCH INFO: ")
+    print(data['message'])
+
+    opponents = data['match']['opponents']
+
+    # Print the usernames
+    for opponent in opponents:
+        pass
+        # print(opponent['username'])
+
+    print("-" * 20)
 
 
 @sio.on("list:tournaments")
@@ -98,6 +113,11 @@ def list_tournaments(data, _):
     for entry in content:
         print(entry)
 
+
+@sio.on("game:makeMove")
+def make_move(data):
+    print(data['message'])
+    return "1"
 
 # Client -> Server
 
@@ -123,3 +143,6 @@ def leave_tournament():
 def start_tournament():
     response = sio.call("tournament:start")
     print(response)
+
+    if response['success']:
+        return True

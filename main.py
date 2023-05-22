@@ -2,6 +2,13 @@ from events import *
 import time
 
 
+def play_menu():
+    print("TOURNAMENT STARTED")
+    while True:
+        print("1")
+        time.sleep(4000)
+
+
 def tournament_menu():
     while True:
         # Wait for server
@@ -30,7 +37,9 @@ def tournament_menu():
 
         # Start a tournament
         elif choice == "4":
-            start_tournament()
+            if start_tournament():
+                play_menu()
+                break
 
         elif choice == "5":
             sio.disconnect()

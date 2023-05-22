@@ -120,6 +120,11 @@ def make_move(data):
     return "1"
 
 
+@sio.on("game:state")
+def game_state(data):
+    print(data['hand'])
+
+
 # Client -> Server
 
 # tournament:create

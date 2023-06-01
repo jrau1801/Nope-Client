@@ -1,4 +1,6 @@
 def aiplayer_move(hand, top_card):
+    can_put = False
+    take_counter = 0
 
     move = {
         "type": None,
@@ -9,34 +11,41 @@ def aiplayer_move(hand, top_card):
     }
 
     if top_card['type'] == 'number':
-        required_color = top_card['color']
+        required_colors = top_card['color'].split('-')  # Splitting the color string by '-' to get individual colors
         required_count = top_card['value']
 
-        print(required_color)
-        required_color = required_color.split("-")
-        print(required_color[1])
+        # Searching for matching cards in hand
+        for i in range(len(required_colors)):
 
-        # Suchen nach passenden Karten in der Hand
-        matching_cards = [card for card in hand if card['type'] == 'number' and card['color'] == required_color]
+            matching_cards = [card for card in hand if card['type'] == 'number' and card['color'] in required_colors[i]]
 
-        if len(matching_cards) >= required_count:
+            if len(matching_cards) >= required_count:
+                move['type'] = 'put'
+                can_put = True
+                for j in range(required_count):
+                    move[f'card{j + 1}'] = matching_cards[j]
 
-            move['type'] = 'put'
-            for i in range(required_count):
-                move[f'card{i + 1}'] = matching_cards[i]
+    if take_counter >= 1:
+        move['type'] = 'nope'
+        return move
+
+    if not can_put:
+        move['type'] = 'take'
+        take_counter += 1
 
     return move
 
 
-# Beispielhand
+# Example hand
 hand = [
     {"type": "number", "color": "red", "value": 2},
-    {"type": "number", "color": "blue", "value": 3},
-    {"type": "number", "color": "red", "value": 6},
-    # Weitere Karten in der Hand
+    {"type": "number", "color": "red", "value": 3},
+    {"type": "number", "color": "red", "value": 4},
+    {"type": "number", "color": "green", "value": 5},
+    # Additional cards in hand
 ]
 
-top_card = {"type": "number", "color": "red-green", "value": 3}
+top_card = {"type": "number", "color": "red-yellow", "value": 3}
 
 move = aiplayer_move(hand, top_card)
 print(move)

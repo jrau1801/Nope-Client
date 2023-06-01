@@ -1,12 +1,15 @@
 import requests
 import socketio
 import threading
+import aiplayer as ai
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
 register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
 sio = socketio.Client()
 
 player_id = None
+hand = None
+topCard = None
 
 lock = threading.Lock()
 
@@ -127,8 +130,10 @@ def list_tournaments(data, _):
 @sio.on("game:makeMove")
 def make_move(data):
     with lock:
+        global topCard, hand
         print("\n")
         print(data['message'])
+        ai.aiplayer_move(hand, topCard)
         return "1"
 
 
@@ -136,6 +141,9 @@ def make_move(data):
 def game_state(data, _):
     with lock:
         print("\n")
+        global topCard, hand
+        topCard = data['topCard']
+        hand = data['hand']
         print("TOPCARD: ", data['topCard'])
 
         for card in data['hand']:

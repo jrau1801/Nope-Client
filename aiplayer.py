@@ -1,5 +1,5 @@
 def aiplayer_move(hand, top_card):
-    can_put = False
+
     global take_counter
 
     move = {
@@ -16,21 +16,22 @@ def aiplayer_move(hand, top_card):
 
         # Searching for matching cards in hand
         for i in range(len(required_colors)):
-
             matching_cards = [card for card in hand if card['type'] == 'number' and card['color'] in required_colors[i]]
 
             if len(matching_cards) >= required_count:
                 move['type'] = 'put'
-                can_put = True
+
                 for j in range(required_count):
                     move[f'card{j + 1}'] = matching_cards[j]
+
+                return move
 
     if take_counter >= 1:
         move['type'] = 'nope'
         take_counter = 0
         return move
 
-    if not can_put:
+    if take_counter == 0:
         move['type'] = 'take'
         take_counter += 1
 
@@ -40,9 +41,9 @@ def aiplayer_move(hand, top_card):
 # Example hand
 hand = [
     {"type": "number", "color": "red", "value": 2},
-    {"type": "number", "color": "red", "value": 3},
-    {"type": "number", "color": "red", "value": 4},
-    {"type": "number", "color": "green", "value": 5},
+    {"type": "number", "color": "yellow", "value": 3},
+    {"type": "number", "color": "yellow", "value": 4},
+    {"type": "number", "color": "yellow", "value": 5},
     # Additional cards in hand
 ]
 

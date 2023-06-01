@@ -1,5 +1,8 @@
-def ai_player_move(hand, top_card, last_move):
+import logging
+import logger
 
+
+def ai_player_move(hand, top_card, last_move, currentPlayer):
     move = {
         "type": None,
         "card1": None,
@@ -31,16 +34,17 @@ def ai_player_move(hand, top_card, last_move):
                         for j in range(required_count):
                             move[f'card{j + 1}'] = matching_cards[j]
 
+                        logging.info(move)
                         return move
 
     if last_move['type'] == 'take':
         move['type'] = 'nope'
+        logging.info(move)
         return move
 
     move['type'] = 'take'
-
+    logging.info(move)
     return move
-
 
 # Example hand
 # hand = [

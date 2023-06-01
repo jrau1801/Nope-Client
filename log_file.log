@@ -1,0 +1,10 @@
+{'type': 'put', 'card1': {'type': 'number', 'color': 'red-green', 'value': 2}, 'card2': None, 'card3': None, 'reason': 'A'}
+{'type': 'put', 'card1': {'type': 'number', 'color': 'red-green', 'value': 1}, 'card2': None, 'card3': None, 'reason': 'A'}
+{'type': 'take', 'card1': None, 'card2': None, 'card3': None, 'reason': 'A'}
+{'type': 'put', 'card1': {'type': 'number', 'color': 'red', 'value': 2}, 'card2': {'type': 'number', 'color': 'red-yellow', 'value': 3}, 'card3': {'type': 'number', 'color': 'green', 'value'{'type': 'put', 'card1{'type': 'put', 'card1': {'type': 'number', 'color': 'blue', 'value': 2}, 'card2': None, 'card3': None, {'type': 'take',{'type': 'put', 'card1': {'type': 'number', 'color': 'yellow-green', 'value': 2}, 'card2': {'type': 'number', 'color': 'yellow', 'value': 2}, 'card3': None, 'reason': 'A'}
+{'type': 'put', 'card1': {'type': 'number', 'color': 'red-green', 'value': 2}, 'card2': {'type': 'number', 'color': 'green', 'value': 2}, 'card3': {'type': 'number', 'color': 'green', 'value': 1}, 'reason': 'A'}
+{'type': 'take', 'card1': None, 'card2': None, 'card3': None, 'reason': 'A'}
+{'type': 'put', 'card1': {'type': 'number', 'color': 'red', 'value': 3}, 'card2': {'type': 'number', 'color': 'red-blue', 'value': 2}, 'card3': {'type': 'number', 'color': 'red-yellow', 'value': 3}, 'reason': 'A'}
+mber', 'color': 'red-green', 'value': 3}, 'card2': None, 'card3': None, 'reason': 'A'}
+{'type': 'take', 'card1': None, 'card2': None, 'card3': None, 'reason': 'A'}
+{'type': 'put', 'card1': {'type': 'number', 'color': 'red', 'value': 2}, 'card2': {'type': 'number', 'color': 'red-yellow', 'value': 2}, 'card3': {'type': 'number', 'color': 'red-yellow', 'value': 2}, 'reason': 'A'}

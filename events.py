@@ -11,6 +11,7 @@ player_id = None
 hand = None
 topCard = None
 last_move = None
+current_player = None
 
 lock = threading.Lock()
 
@@ -134,17 +135,18 @@ def make_move(data):
         global topCard, hand
         print("\n")
         print(data['message'])
-        return ai.ai_player_move(hand, topCard, last_move)
+        return ai.ai_player_move(hand, topCard, last_move, current_player)
 
 
 @sio.on("game:state")
 def game_state(data, _):
     with lock:
         print("\n")
-        global topCard, hand, last_move
+        global topCard, hand, last_move, current_player
         topCard = data['topCard']
         hand = data['hand']
         last_move = data['lastMove']
+        current_player = data['currentPlayer']
 
         print("TOP-CARD: ", data['topCard'])
 

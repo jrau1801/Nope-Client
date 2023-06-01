@@ -48,9 +48,13 @@ def ai_player_move(hand, top_card):
 
 # Example hand
 hand = [
-    {"type": "number", "color": "red", "value": 1},
+    {"type": "number", "color": "yellow", "value": 1},
     {"type": "number", "color": "red", "value": 3},
     {"type": "number", "color": "red", "value": 2},
+    {"type": "number", "color": "yellow-red", "value": 1},
+    {"type": "number", "color": "blue", "value": 1},
+    {"type": "number", "color": "yellow", "value": 3},
+    {"type": "number", "color": "green", "value": 2},
     {"type": "number", "color": "yellow-red", "value": 1},
     # Additional cards in hand
 ]
@@ -58,4 +62,7 @@ hand = [
 top_card = {"type": "number", "color": "red", "value": 3}
 take_counter = 0
 move = ai_player_move(hand, top_card)
-print(move)
+
+for entry in move:
+    if entry.startswith('card'):
+        print(move[entry]['color'], move[entry]['value'])

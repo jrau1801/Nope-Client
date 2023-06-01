@@ -1,5 +1,4 @@
 def ai_player_move(hand, top_card, last_move):
-    global take_counter
 
     move = {
         "type": None,
@@ -34,14 +33,11 @@ def ai_player_move(hand, top_card, last_move):
 
                         return move
 
-    if take_counter >= 1:
+    if last_move['type'] == 'take':
         move['type'] = 'nope'
-        take_counter = 0
         return move
 
-    if take_counter == 0:
-        move['type'] = 'take'
-        take_counter += 1
+    move['type'] = 'take'
 
     return move
 
@@ -60,7 +56,6 @@ def ai_player_move(hand, top_card, last_move):
 # ]
 
 # top_card = {"type": "number", "color": "red", "value": 3}
-# take_counter = 0
 # move = ai_player_move(hand, top_card)
 #
 # print(move)

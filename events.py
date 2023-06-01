@@ -1,5 +1,3 @@
-import time
-
 import requests
 import socketio
 import threading

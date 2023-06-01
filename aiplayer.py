@@ -1,6 +1,6 @@
 def aiplayer_move(hand, top_card):
     can_put = False
-    take_counter = 0
+    global take_counter
 
     move = {
         "type": None,
@@ -27,6 +27,7 @@ def aiplayer_move(hand, top_card):
 
     if take_counter >= 1:
         move['type'] = 'nope'
+        take_counter = 0
         return move
 
     if not can_put:
@@ -46,6 +47,6 @@ hand = [
 ]
 
 top_card = {"type": "number", "color": "red-yellow", "value": 3}
-
+take_counter = 0
 move = aiplayer_move(hand, top_card)
 print(move)

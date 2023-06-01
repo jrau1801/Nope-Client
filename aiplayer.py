@@ -1,12 +1,20 @@
 def aiplayer_move(hand, top_card):
+
     move = {
-        "type": "nope",
+        "type": None,
+        "card1": None,
+        "card2": None,
+        "card3": None,
         "reason": "Because I can!"
     }
 
     if top_card['type'] == 'number':
         required_color = top_card['color']
         required_count = top_card['value']
+
+        print(required_color)
+        required_color = required_color.split("-")
+        print(required_color[1])
 
         # Suchen nach passenden Karten in der Hand
         matching_cards = [card for card in hand if card['type'] == 'number' and card['color'] == required_color]
@@ -28,7 +36,7 @@ hand = [
     # Weitere Karten in der Hand
 ]
 
-top_card = {"type": "number", "color": "red", "value": 1}
+top_card = {"type": "number", "color": "red-green", "value": 3}
 
 move = aiplayer_move(hand, top_card)
 print(move)

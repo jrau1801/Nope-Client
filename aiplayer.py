@@ -1,4 +1,4 @@
-def aiplayer_move(hand, top_card):
+def ai_player_move(hand, top_card):
 
     global take_counter
 
@@ -7,7 +7,7 @@ def aiplayer_move(hand, top_card):
         "card1": None,
         "card2": None,
         "card3": None,
-        "reason": "Because I can!"
+        "reason": "A"
     }
 
     if top_card['type'] == 'number':
@@ -41,13 +41,13 @@ def aiplayer_move(hand, top_card):
 # Example hand
 hand = [
     {"type": "number", "color": "red", "value": 2},
-    {"type": "number", "color": "yellow", "value": 3},
+    {"type": "number", "color": "red", "value": 3},
     {"type": "number", "color": "yellow", "value": 4},
     {"type": "number", "color": "yellow", "value": 5},
     # Additional cards in hand
 ]
 
-top_card = {"type": "number", "color": "red-yellow", "value": 3}
+top_card = {"type": "number", "color": "red-yellow", "value": 2}
 take_counter = 0
-move = aiplayer_move(hand, top_card)
+move = ai_player_move(hand, top_card)
 print(move)

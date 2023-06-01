@@ -133,7 +133,7 @@ def make_move(data):
         global topCard, hand
         print("\n")
         print(data['message'])
-        ai.aiplayer_move(hand, topCard)
+        ai.ai_player_move(hand, topCard)
         return "1"
 
 
@@ -144,7 +144,7 @@ def game_state(data, _):
         global topCard, hand
         topCard = data['topCard']
         hand = data['hand']
-        print("TOPCARD: ", data['topCard'])
+        print("TOP-CARD: ", data['topCard'])
 
         for card in data['hand']:
             print(card['type'], card['color'], card['value'])

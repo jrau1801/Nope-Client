@@ -1,4 +1,4 @@
-def ai_player_move(hand, top_card):
+def ai_player_move(hand, top_card, last_move):
     global take_counter
 
     move = {
@@ -47,22 +47,20 @@ def ai_player_move(hand, top_card):
 
 
 # Example hand
-hand = [
-    {"type": "number", "color": "yellow", "value": 1},
-    {"type": "number", "color": "red", "value": 3},
-    {"type": "number", "color": "red", "value": 2},
-    {"type": "number", "color": "yellow-red", "value": 1},
-    {"type": "number", "color": "blue", "value": 1},
-    {"type": "number", "color": "yellow", "value": 3},
-    {"type": "number", "color": "green", "value": 2},
-    {"type": "number", "color": "yellow-red", "value": 1},
-    # Additional cards in hand
-]
+# hand = [
+#     {"type": "number", "color": "yellow", "value": 1},
+#     {"type": "number", "color": "red", "value": 3},
+#     {"type": "number", "color": "blue", "value": 2},
+#     {"type": "number", "color": "yellow-green", "value": 1},
+#     {"type": "number", "color": "blue", "value": 1},
+#     {"type": "number", "color": "yellow", "value": 3},
+#     {"type": "number", "color": "green", "value": 2},
+#     {"type": "number", "color": "yellow-red", "value": 1},
+#     # Additional cards in hand
+# ]
 
-top_card = {"type": "number", "color": "red", "value": 3}
-take_counter = 0
-move = ai_player_move(hand, top_card)
-
-for entry in move:
-    if entry.startswith('card'):
-        print(move[entry]['color'], move[entry]['value'])
+# top_card = {"type": "number", "color": "red", "value": 3}
+# take_counter = 0
+# move = ai_player_move(hand, top_card)
+#
+# print(move)

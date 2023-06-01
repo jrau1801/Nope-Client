@@ -10,6 +10,7 @@ sio = socketio.Client()
 player_id = None
 hand = None
 topCard = None
+last_move = None
 
 lock = threading.Lock()
 
@@ -133,17 +134,18 @@ def make_move(data):
         global topCard, hand
         print("\n")
         print(data['message'])
-        ai.ai_player_move(hand, topCard)
-        return "1"
+        return ai.ai_player_move(hand, topCard, last_move)
 
 
 @sio.on("game:state")
 def game_state(data, _):
     with lock:
         print("\n")
-        global topCard, hand
+        global topCard, hand, last_move
         topCard = data['topCard']
         hand = data['hand']
+        last_move = data['lastMove']
+
         print("TOP-CARD: ", data['topCard'])
 
         for card in data['hand']:

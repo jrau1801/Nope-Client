@@ -28,7 +28,7 @@ def ai_player_move(hand, top_card, last_move, currentPlayer):
                         move['type'] = 'put'
                         for j in range(required_count):
                             move[f'card{j + 1}'] = matching_cards[j]
-
+                        break
 
     if move['type'] is None:
         if last_move['type'] == 'take':
@@ -36,24 +36,25 @@ def ai_player_move(hand, top_card, last_move, currentPlayer):
         else:
             move['type'] = 'take'
 
-    logger.info(f"{currentPlayer['username']}: {move}")
+    # logger.info(f"{currentPlayer['username']}: {move}")
     print(f"{currentPlayer['username']}: {move}")
+
     return move
 
 # Example hand
 # hand = [
-#     {"type": "number", "color": "yellow", "value": 1},
-#     {"type": "number", "color": "red", "value": 3},
+#     {"type": "number", "color": "yellow-blue", "value": 1},
+#     {"type": "number", "color": "green", "value": 3},
 #     {"type": "number", "color": "blue", "value": 2},
-#     {"type": "number", "color": "yellow-green", "value": 1},
+#     {"type": "number", "color": "green", "value": 1},
 #     {"type": "number", "color": "blue", "value": 1},
-#     {"type": "number", "color": "yellow", "value": 3},
+#     {"type": "number", "color": "green", "value": 3},
 #     {"type": "number", "color": "green", "value": 2},
-#     {"type": "number", "color": "yellow-red", "value": 1},
+#     {"type": "number", "color": "green", "value": 1},
 #     # Additional cards in hand
 # ]
-
-# top_card = {"type": "number", "color": "red", "value": 3}
-# move = ai_player_move(hand, top_card)
+#
+# top_card = {"type": "number", "color": "red-yellow", "value": 1}
+# move = ai_player_move(hand, top_card, None, None)
 #
 # print(move)

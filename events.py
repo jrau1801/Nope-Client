@@ -156,6 +156,11 @@ def game_state(data, _):
             print(card['type'], card['color'], card['value'])
 
 
+@sio.on("game:status")
+def game_status(data, _):
+    print(data['message'])
+    print(data['winner'])
+
 # Client -> Server
 
 # tournament:create

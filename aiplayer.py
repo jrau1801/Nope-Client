@@ -40,18 +40,18 @@ def ai_player_move(hand, top_card, last_move, currentPlayer):
 
 # Example hand
 # hand = [
-#     {"type": "number", "color": "green-blue", "value": 1},
-#     {"type": "number", "color": "green", "value": 3},
+#     {"type": "number", "color": "red-blue", "value": 1},
+#     {"type": "number", "color": "yellow", "value": 3},
 #     {"type": "number", "color": "blue", "value": 2},
 #     {"type": "number", "color": "green", "value": 1},
 #     {"type": "number", "color": "blue", "value": 1},
 #     {"type": "number", "color": "green", "value": 3},
 #     {"type": "number", "color": "green", "value": 2},
-#     {"type": "number", "color": "green", "value": 1},
+#     {"type": "number", "color": "red", "value": 1},
 #     # Additional cards in hand
 # ]
 #
-# top_card = {"type": "number", "color": "red-yellow", "value": 1}
-# move = ai_player_move(hand, top_card, None, None)
-
+# top_card = {"type": "number", "color": "red-yellow", "value": 3}
+# move = ai_player_move(hand, top_card, {"type" : "put"})
+#
 # print(move)

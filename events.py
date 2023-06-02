@@ -152,8 +152,6 @@ def game_state(data, _):
         last_move = data['lastMove']
         current_player = data['currentPlayer']
 
-        print("TOP-CARD: ", data['topCard'])
-
         for card in data['hand']:
             print(card['type'], card['color'], card['value'])
 

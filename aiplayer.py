@@ -1,5 +1,4 @@
-import logging
-import logger
+from logger import logger
 
 
 def ai_player_move(hand, top_card, last_move, currentPlayer):
@@ -18,32 +17,27 @@ def ai_player_move(hand, top_card, last_move, currentPlayer):
         matching_cards = []
         # Searching for matching cards in hand
         for i in range(len(required_colors)):
-
             for card in hand:
                 if card['type'] == 'number':
-
                     color = card['color'].split("-")
-
                     for j in range(len(color)):
                         if color[j] in required_colors[i]:
                             matching_cards.append(card)
 
                     if len(matching_cards) >= required_count:
                         move['type'] = 'put'
-
                         for j in range(required_count):
                             move[f'card{j + 1}'] = matching_cards[j]
 
-                        logging.info(move)
-                        return move
 
-    if last_move['type'] == 'take':
-        move['type'] = 'nope'
-        logging.info(move)
-        return move
+    if move['type'] is None:
+        if last_move['type'] == 'take':
+            move['type'] = 'nope'
+        else:
+            move['type'] = 'take'
 
-    move['type'] = 'take'
-    logging.info(move)
+    logger.info(f"{currentPlayer['username']}: {move}")
+    print(f"{currentPlayer['username']}: {move}")
     return move
 
 # Example hand

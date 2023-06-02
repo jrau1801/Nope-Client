@@ -1,3 +1,5 @@
+import time
+
 import requests
 import socketio
 import threading
@@ -135,7 +137,9 @@ def make_move(data):
         global topCard, hand
         print("\n")
         print(data['message'])
-        return ai.ai_player_move(hand, topCard, last_move, current_player)
+        move = ai.ai_player_move(hand, topCard, last_move, current_player)
+        time.sleep(0.5)
+        return move
 
 
 @sio.on("game:state")

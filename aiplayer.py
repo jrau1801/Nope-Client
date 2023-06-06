@@ -1,5 +1,3 @@
-from logger import logger
-
 
 def ai_player_move(hand, top_card, last_move, currentPlayer):
     """

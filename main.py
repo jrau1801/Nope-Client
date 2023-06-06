@@ -9,6 +9,10 @@ def play_menu():
 
 
 def tournament_menu():
+    """
+    Main menu for the game
+    :return: nothing
+    """
     while True:
         # Wait for server
         time.sleep(0.5)
@@ -48,6 +52,10 @@ def tournament_menu():
 
 
 def login_menu():
+    """
+    Login and Registration menu
+    :return: nothing
+    """
     print("1. Login")
     print("2. Register")
 

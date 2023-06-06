@@ -1,3 +1,5 @@
+import time
+
 import requests
 import socketio
 import threading
@@ -10,13 +12,20 @@ sio = socketio.Client()
 player_id = None
 hand = None
 topCard = None
+last_topCard = None
 last_move = None
+current_player = None
 
 lock = threading.Lock()
 
 
 def login(name, password):
-    # Login logic
+    """
+    Handles Client-Login
+    :param name: Name of client-player
+    :param password: password of client-player
+    :return: true if successful, false otherwise
+    """
     data = {"username": name, "password": password}
     response = requests.post(login_url, json=data)
 
@@ -39,7 +48,14 @@ def login(name, password):
 
 
 def registration(name, password, firstname, lastname):
-    # Register Logic
+    """
+    Handles Client-Registration
+    :param name: Username of new user
+    :param password: Password of new user
+    :param firstname: Real firstname of User
+    :param lastname: Real lastname of user
+    :return: true if successful, false otherwise
+    """
     data = {"username": name, "password": password, "firstname": firstname, "lastname": lastname}
 
     # Register on server
@@ -52,24 +68,40 @@ def registration(name, password, firstname, lastname):
 
 @sio.event
 def connect():
-    # Connect to the server
+    """
+    Connect to server
+    :return: nothing
+    """
     print("Connected to server.")
 
 
 @sio.event
 def disconnect():
-    # Disconnect from the server
+    """
+    Disconnect from server
+    :return: nothing
+    """
     print("Disconnected from server")
 
 
 @sio.event
 def callback(data):
-    # Prints data on acknowledgement
+    """
+    Prints data on acknowledgment
+    :param data: data received from server
+    :return: nothing
+    """
     print(data)
 
 
 @sio.on("tournament:playerInfo")
 def player_info(data, _):
+    """
+    Prints player-info
+    :param data: player-info-data received from server
+    :param _: placeholder
+    :return: nothing
+    """
     with lock:
         print("\n")
         print("PLAYER INFO: ")
@@ -79,6 +111,12 @@ def player_info(data, _):
 
 @sio.on("tournament:info")
 def tournament_info(data, _):
+    """
+    Prints tournament-info
+    :param data: tournament-info-data received from server
+    :param _: placeholder
+    :return: nothing
+    """
     with lock:
         print("\n")
         print("TOURNAMENT INFO: ")
@@ -89,6 +127,12 @@ def tournament_info(data, _):
 
 @sio.on("match:info")
 def match_info(data, _):
+    """
+    Prints match-info
+    :param data: match-info-data received from server
+    :param _: placeholder
+    :return: nothing
+    """
     with lock:
         print("\n")
         print("MATCH INFO: ")
@@ -106,6 +150,12 @@ def match_info(data, _):
 
 @sio.on("list:tournaments")
 def list_tournaments(data, _):
+    """
+    Prints list of tournaments
+    :param data: tournament-list data received from server
+    :param _: placeholder
+    :return: nothing
+    """
     with lock:
         print("\n")
         # Lists tournament info for all tournaments
@@ -130,50 +180,93 @@ def list_tournaments(data, _):
 
 @sio.on("game:makeMove")
 def make_move(data):
+    """
+    Initializes ai-player move
+    :param data: turn-data received from server
+    :return: move to make
+    """
     with lock:
         global topCard, hand
         print("\n")
         print(data['message'])
-        return ai.ai_player_move(hand, topCard, last_move)
+        move = ai.ai_player_build_move(hand, topCard, last_topCard, last_move, current_player)
+        time.sleep(0.5)
+        return move
 
 
 @sio.on("game:state")
 def game_state(data, _):
+    """
+    Prints the current game-state
+    :param data: game-state-data received from server
+    :param _: placeholder
+    :return: nothing
+    """
     with lock:
         print("\n")
-        global topCard, hand, last_move
+        global topCard, hand, last_move, current_player, last_topCard
         topCard = data['topCard']
+        last_topCard = data['lastTopCard']
         hand = data['hand']
         last_move = data['lastMove']
-
-        print("TOP-CARD: ", data['topCard'])
+        current_player = data['currentPlayer']
 
         for card in data['hand']:
             print(card['type'], card['color'], card['value'])
+
+
+@sio.on("game:status")
+def game_status(data, _):
+    """
+    Prints message and winner
+    :param data: status-data received from server
+    :param _: placeholder
+    :return: nothing
+    """
+    print(data['message'])
+    print(data['winner'])
 
 
 # Client -> Server
 
 # tournament:create
 def create_tournament(num_best_of_matches):
+    """
+    Creates a tournament with an emit to the server
+    :param num_best_of_matches: number of max matches
+    :return: nothing
+    """
     response = sio.call("tournament:create", num_best_of_matches)
     print(response)
 
 
 # tournament:join
 def join_tournament(tournament_id):
+    """
+    Join a tournament with an id
+    :param tournament_id: tournament you want to join
+    :return: nothing
+    """
     response = sio.call("tournament:join", tournament_id)
     print(response)
 
 
 # tournament:leave
 def leave_tournament():
+    """
+    Leave a tournament
+    :return: nothing
+    """
     response = sio.call("tournament:leave")
     print("TOURNAMENT LEAVE: ", response)
 
 
 # tournament:start
 def start_tournament():
+    """
+    Start a tournament
+    :return: true if successful, false otherwise
+    """
     response = sio.call("tournament:start")
     print(response)
 

@@ -1,10 +1,9 @@
-.. Nope-Client documentation master file, created by
-   sphinx-quickstart on Tue Jun  6 18:11:47 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+============
+Nope-Client
+============
 
-Welcome to Nope-Client's documentation!
-=======================================
+Welcome to the Nope-Client Documentation!
+-----------------------------------------
 
 .. toctree::
    :maxdepth: 2
@@ -14,8 +13,8 @@ Welcome to Nope-Client's documentation!
    rst/events
    rst/main
 
-Indices and tables
-==================
+Indices and Tables
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

@@ -50,8 +50,17 @@
 <span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">move</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.build" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds a move if the top card is a number card
 :param move: empty move
-:param topCard: cuurent top card
+:param topCard: current top card
 :param hand: current player hand
+:return: built move</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aiplayer.handle_reboot_and_joker">
+<span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">handle_reboot_and_joker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">move</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.handle_reboot_and_joker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles the move if the top-card or last-top-card is a joker or a reboot card
+:param move: empty move
+:param hand: current player-hand
 :return: built move</p>
 </dd></dl>
 
@@ -89,6 +98,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">aiplayer module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.ai_player_build_move"><code class="docutils literal notranslate"><span class="pre">ai_player_build_move()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.build"><code class="docutils literal notranslate"><span class="pre">build()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aiplayer.handle_reboot_and_joker"><code class="docutils literal notranslate"><span class="pre">handle_reboot_and_joker()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.handle_see_through"><code class="docutils literal notranslate"><span class="pre">handle_see_through()</span></code></a></li>
 </ul>
 </li>

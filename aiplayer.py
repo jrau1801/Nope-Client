@@ -55,12 +55,14 @@ def build(move, topCard, hand):
         for card in hand:
             if card['type'] == 'number' and any(color in card['color'] for color in required_color.split('-')):
                 matching_cards.append(card)
+                print(card)
 
         if len(matching_cards) >= required_count:
             move['type'] = 'put'
             move.update({f'card{i + 1}': matching_cards[i] for i in range(required_count)})
             return move
 
+        matching_cards = []
     return move
 
 
@@ -89,13 +91,13 @@ def handle_reboot_and_joker(move, hand):
     :return: built move
     """
     for card in hand:
-        if card['type'] == 'number' and len(card['color'].split('-')) == 1:
+        if card['type'] == 'number' and len(card['color'].split('-')) == 2:
             move.update({'card1': card})
             move.update({'type': 'put'})
             return move
 
     for card in hand:
-        if card['type'] == 'number' and len(card['color'].split('-')) == 2:
+        if card['type'] == 'number' and len(card['color'].split('-')) == 1:
             move.update({'card1': card})
             move.update({'type': 'put'})
             return move
@@ -111,19 +113,19 @@ def handle_reboot_and_joker(move, hand):
 
 # Example hand
 handTest = [
-    {"type": "number", "color": "red-blue", "value": 1},
+    {"type": "number", "color": "blue", "value": 1},
     {"type": "number", "color": "yellow", "value": 3},
-    {"type": "number", "color": "green", "value": 2},
+    {"type": "number", "color": "red", "value": 2},
     {"type": "number", "color": "green", "value": 1},
-    {"type": "number", "color": "yellow", "value": 1},
+    {"type": "number", "color": "red-yellow", "value": 1},
     {"type": "number", "color": "green", "value": 3},
     {"type": "number", "color": "green", "value": 2},
-    {"type": "number", "color": "blue", "value": 1},
+    {"type": "number", "color": "red", "value": 1},
     {"type": "see-through", "color": "red", "value": None},
     # Additional cards in hand
 ]
 
-top_cardTest = {"type": "see-through", "color": "green", "value": None}
+top_cardTest = {"type": "number", "color": "yellow-red", "value": 3}
 last_topCardTest = {"type": "joker", "color": "multi", "value": None}
 moveTest = ai_player_build_move(handTest, top_cardTest, last_topCardTest, {"type": "put"}, None)
 

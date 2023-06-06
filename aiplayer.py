@@ -39,7 +39,7 @@ def build(move, topCard, hand):
     """
     Builds a move if the top card is a number card
     :param move: empty move
-    :param topCard: cuurent top card
+    :param topCard: current top card
     :param hand: current player hand
     :return: built move
     """

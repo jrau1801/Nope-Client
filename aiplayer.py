@@ -2,6 +2,14 @@ from logger import logger
 
 
 def ai_player_move(hand, top_card, last_move, currentPlayer):
+    """
+    AI-Player builds a move
+    :param hand: Current hand
+    :param top_card: card last played by other player
+    :param last_move: last move you made
+    :param currentPlayer: player whose turn it is
+    :return: built move
+    """
     move = {
         "type": None,
         "card1": None,

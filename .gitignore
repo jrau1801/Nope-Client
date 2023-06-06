@@ -14,3 +14,7 @@ docs/_build/
 
 # Ignore log files
 *.log
+
+# Sphinx files
+_static
+_templates

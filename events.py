@@ -12,6 +12,7 @@ sio = socketio.Client()
 player_id = None
 hand = None
 topCard = None
+last_topCard = None
 last_move = None
 current_player = None
 
@@ -188,7 +189,7 @@ def make_move(data):
         global topCard, hand
         print("\n")
         print(data['message'])
-        move = ai.ai_player_move(hand, topCard, last_move, current_player)
+        move = ai.ai_player_build_move(hand, topCard, last_topCard, last_move, current_player)
         time.sleep(0.5)
         return move
 
@@ -203,8 +204,9 @@ def game_state(data, _):
     """
     with lock:
         print("\n")
-        global topCard, hand, last_move, current_player
+        global topCard, hand, last_move, current_player, last_topCard
         topCard = data['topCard']
+        last_topCard = data['lastTopCard']
         hand = data['hand']
         last_move = data['lastMove']
         current_player = data['currentPlayer']

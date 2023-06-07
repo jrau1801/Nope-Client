@@ -204,15 +204,17 @@ def game_state(data, _):
     """
     with lock:
         print("\n")
-        global topCard, hand, last_move, current_player, last_topCard
+        global topCard, hand, last_move, current_player, last_topCard, player_id
         topCard = data['topCard']
         last_topCard = data['lastTopCard']
         hand = data['hand']
         last_move = data['lastMove']
         current_player = data['currentPlayer']
 
-        for card in data['hand']:
-            print(card['type'], card['color'], card['value'])
+        if player_id == current_player['id']:
+            print("YOUR HAND: ")
+            for card in data['hand']:
+                print(card['type'], card['color'], card['value'])
 
 
 @sio.on("game:status")

@@ -79,6 +79,13 @@ def build(move, topCard, hand):
 
 
 def can_joker_fill_set(card_set, num_joker_cards, required_count):
+    """
+    Checks if joker cards in hand can fill up a set
+    :param card_set: card-set to check
+    :param num_joker_cards: number of joker cards in hand
+    :param required_count: number of cards needed for a complete set
+    :return: True if set can be filled, False if not
+    """
     if len(card_set) < required_count <= len(card_set) + num_joker_cards:
         return True
 
@@ -86,6 +93,12 @@ def can_joker_fill_set(card_set, num_joker_cards, required_count):
 
 
 def joker_fill_set(card_set, required_count):
+    """
+    Fills the uncompleted set with joker cards
+    :param card_set: card-set to fill
+    :param required_count: number of cards needed for a complete set
+    :return: filled card-set
+    """
     while len(card_set) < required_count:
         card_set.append({"type": "joker", "color": "multi", "value": None})
 
@@ -93,6 +106,11 @@ def joker_fill_set(card_set, required_count):
 
 
 def count_joker_cards(hand):
+    """
+    Counts the joker cards in your hand
+    :param hand: player hand
+    :return: number of joker cards
+    """
     joker_counter = 0
 
     for card in hand:

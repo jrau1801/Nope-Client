@@ -24,7 +24,7 @@ class LoginForm(QWidget):
 
         # Create login button
         login_button = QPushButton('Login')
-        login_button.clicked.connect(login(self.username_entry.text(), self.password_entry.text()))
+        login_button.clicked.connect(lambda: login(self.username_entry.text(), self.password_entry.text()))
 
         # Add all widgets to layout
         hbox1 = QHBoxLayout()

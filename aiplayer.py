@@ -135,12 +135,12 @@ def handle_see_through(move, last_topCard, hand):
         move = handle_reboot_and_joker(move, hand)
 
     if last_topCard['type'] == 'see-through':
-        move = handle_see_through_under_see_through(move, last_topCard, hand)
+        move = handle_see_under_see(move, last_topCard, hand)
 
     return move
 
 
-def handle_see_through_under_see_through(move, last_topCard, hand):
+def handle_see_under_see(move, last_topCard, hand):
     """
     If top card and last top card are both see-through
     :param move: empty move
@@ -187,14 +187,14 @@ def handle_reboot_and_joker(move, hand):
 
 # Example hand
 # handTest = [
-#     {"type": "number", "color": "red", "value": 1},
-#     {"type": "number", "color": "red", "value": 3},
-#     {"type": "number", "color": "red", "value": 2},
-#     {"type": "number", "color": "yellow", "value": 1},
-#     {"type": "number", "color": "yellow", "value": 1},
+#     # {"type": "number", "color": "red", "value": 1},
+#     # {"type": "number", "color": "red", "value": 3},
+#     # {"type": "number", "color": "red", "value": 2},
+#     # {"type": "number", "color": "yellow", "value": 1},
+#     # {"type": "number", "color": "yellow", "value": 1},
 #     # {"type": "reboot", "color": "multi", "value": None},
-#     # {"type": "joker", "color": "multi", "value": None},
-#     {"type": "number", "color": "yellow", "value": 1},
+#     {"type": "joker", "color": "multi", "value": 1},
+#     # {"type": "number", "color": "yellow", "value": 1},
 #     # {"type": "see-through", "color": "red", "value": None},
 #     # Additional cards in hand
 # ]

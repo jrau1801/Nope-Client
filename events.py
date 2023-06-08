@@ -15,6 +15,7 @@ topCard = None
 last_topCard = None
 last_move = None
 current_player = None
+tournament_started = False
 
 lock = threading.Lock()
 
@@ -118,10 +119,15 @@ def tournament_info(data, _):
     :return: nothing
     """
     with lock:
+        global tournament_started
         print("\n")
         print("TOURNAMENT INFO: ")
         print(data['message'])
         print(data['status'])
+
+        if(data['status']) == "FINISHED":
+            tournament_started = False
+
         print("-" * 20)
 
 
@@ -157,25 +163,28 @@ def list_tournaments(data, _):
     :return: nothing
     """
     with lock:
-        print("\n")
-        # Lists tournament info for all tournaments
-        content = []
-        row_content = []
 
-        for tournament in data:
+        if not tournament_started:
 
-            row_content.append(tournament['id'])
-            row_content.append(tournament['status'])
-
-            for player in tournament["players"]:
-                row_content.append(player["username"])
-
-            content.append(row_content)
+            print("\n")
+            # Lists tournament info for all tournaments
+            content = []
             row_content = []
 
-        for entry in content:
-            print(entry)
-        print("\n")
+            for tournament in data:
+
+                row_content.append(tournament['id'])
+                row_content.append(tournament['status'])
+
+                for player in tournament["players"]:
+                    row_content.append(player["username"])
+
+                content.append(row_content)
+                row_content = []
+
+            for entry in content:
+                print(entry)
+            print("\n")
 
 
 @sio.on("game:makeMove")
@@ -273,5 +282,8 @@ def start_tournament():
     response = sio.call("tournament:start")
     print(response)
 
+    global tournament_started
+
     if response['success']:
+        tournament_started = True
         return True

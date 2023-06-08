@@ -2,8 +2,6 @@ from events import *
 import time
 
 
-
-
 def tournament_menu():
     """
     Main menu for the game

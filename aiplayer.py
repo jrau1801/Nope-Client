@@ -50,7 +50,7 @@ def build(move, topCard, hand):
     required_count = topCard['value']
     matching_cards = []
     all_matching_cards = []
-    num_joker_cards = 0
+    num_joker_cards = count_joker_cards(hand)
 
     # Searching for matching cards in hand
     for required_color in required_colors:
@@ -172,8 +172,8 @@ handTest = [
     {"type": "number", "color": "yellow", "value": 2},
     {"type": "number", "color": "red", "value": 1},
     {"type": "number", "color": "blue", "value": 1},
-    # {"type": "number", "color": "yellow", "value": 3},
-    # {"type": "number", "color": "green", "value": 2},
+    {"type": "joker", "color": "multi", "value": None},
+    # {"type": "joker", "color": "multi", "value": None},
     # {"type": "number", "color": "red", "value": 1},
     # {"type": "see-through", "color": "red", "value": None},
     # Additional cards in hand

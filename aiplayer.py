@@ -22,8 +22,11 @@ def ai_player_build_move(hand, top_card, last_topCard, last_move, currentPlayer)
     if top_card['type'] == 'number':
         move = build(move, top_card, hand)
 
-    if top_card['type'] == 'joker':
+    if top_card['type'] == 'joker' or top_card['type'] == 'reboot':
         move = handle_reboot_and_joker(move, hand)
+
+    if check_only_action_hand(hand):
+        move = handle_only_action_left(move, hand, top_card)
 
     if move['type'] is None:
         if last_move['type'] == 'take':
@@ -32,8 +35,8 @@ def ai_player_build_move(hand, top_card, last_topCard, last_move, currentPlayer)
             move['type'] = 'take'
 
     # logger.info(f"{currentPlayer['username']}: {move}")
-    print(f"TOP-CARD: {top_card}")
-    print(f"{currentPlayer['username']}: {move}")
+    # print(f"Top-Card: {top_card}")
+    print(f"{currentPlayer['username']}: {move}\n")
 
     return move
 
@@ -76,6 +79,92 @@ def build(move, topCard, hand):
             return move
 
     return move
+
+
+def check_only_action_hand(hand):
+    """
+    Checks if the hand has only action cards left
+    :param hand: player hand
+    :return: True, if only action cards in hand, False if not
+    """
+    for card in hand:
+        if card['type'] == 'number':
+            return False
+
+    return True
+
+
+def handle_only_action_left(move, hand, top_card):
+    """
+    Plays the action cards if they're the only ones left
+    :param move: empty move
+    :param hand: player hand
+    :param top_card: current card at the top
+    :return: built move
+    """
+    for card in hand:
+
+        if card['type'] == 'see-through':
+
+            if card['color'] == top_card['color'] or top_card['color'] == 'multi':
+                move['type'] = 'put'
+                move.update({'card1': card})
+                return move
+
+        if card['type'] == 'reboot':
+            move['type'] = 'put'
+            move.update({'card1': card})
+            return move
+
+    return move
+
+
+def sort_card_set_asc(card_set):
+    """
+    sorts the playable card-set by value ascending -> 1, 2, 3
+    :param card_set: playable set
+    :return: asc-sorted set
+    """
+    temp = card_set
+    n = len(temp)
+    sort = False
+    if n >= 2:
+        while not sort:
+            sort = True
+            for i in range(n - 1):
+                current_card = temp[i]
+                next_card = temp[i + 1]
+
+                if current_card["value"] > next_card["value"]:
+                    # Swap card contents
+                    temp[i], temp[i + 1] = next_card, current_card
+                    sort = False
+
+    print(temp)
+
+
+def sort_card_set_desc(card_set):
+    """
+    sorts the playable card-set by value descending -> 3, 2, 1
+    :param card_set: playable set
+    :return: desc-sorted set
+    """
+    temp = card_set
+    n = len(temp)
+    sort = False
+    if n >= 2:
+        while not sort:
+            sort = True
+            for i in range(n - 1):
+                current_card = temp[i]
+                next_card = temp[i + 1]
+
+                if current_card["value"] < next_card["value"]:
+                    # Swap card contents
+                    temp[i], temp[i + 1] = next_card, current_card
+                    sort = False
+
+    print(temp)
 
 
 def can_joker_fill_set(card_set, num_joker_cards, required_count):
@@ -187,19 +276,19 @@ def handle_reboot_and_joker(move, hand):
 
 # Example hand
 # handTest = [
-#     # {"type": "number", "color": "red", "value": 1},
-#     # {"type": "number", "color": "red", "value": 3},
-#     # {"type": "number", "color": "red", "value": 2},
-#     # {"type": "number", "color": "yellow", "value": 1},
-#     # {"type": "number", "color": "yellow", "value": 1},
-#     # {"type": "reboot", "color": "multi", "value": None},
-#     {"type": "joker", "color": "multi", "value": 1},
-#     # {"type": "number", "color": "yellow", "value": 1},
-#     # {"type": "see-through", "color": "red", "value": None},
+#     {"type": "see-through", "color": "red", "value": None},
+#     {"type": "see-through", "color": "green", "value": None},
+#     {"type": "number", "color": "blue-green", "value": 2},
+#     {"type": "number", "color": "yellow", "value": 1},
+#     {"type": "number", "color": "yellow-red", "value": 1},
+#     {"type": "reboot", "color": "multi", "value": None},
+#     {"type": "see-through", "color": "green", "value": None},
+#     {"type": "number", "color": "yellow", "value": 1},
+#     {"type": "see-through", "color": "red", "value": None},
 #     # Additional cards in hand
 # ]
 #
-# top_cardTest = {"type": "number", "color": "red-yellow", "value": 3}
+# top_cardTest = {"type": "number", "color": "green", "value": 1}
 # last_topCardTest = {"type": "see-through", "color": "blue", "value": None}
 # moveTest = ai_player_build_move(handTest, top_cardTest, last_topCardTest, {"type": "put"}, None)
 #

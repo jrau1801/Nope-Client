@@ -212,7 +212,6 @@ def game_state(data, _):
     :return: nothing
     """
     with lock:
-        print("\n")
         global topCard, hand, last_move, current_player, last_topCard, player_id
         topCard = data['topCard']
         last_topCard = data['lastTopCard']
@@ -221,6 +220,7 @@ def game_state(data, _):
         current_player = data['currentPlayer']
 
         if player_id == current_player['id']:
+            print(f"Top-Card: \n{topCard['type']} \n{topCard['color']} \n{topCard['value']}\n")
             print("YOUR HAND: ")
             for card in data['hand']:
                 print(card['type'], card['color'], card['value'])

@@ -12,6 +12,7 @@ Welcome to the Nope-Client Documentation!
    rst/aiplayer
    rst/events
    rst/main
+   rst/urls
 
 Indices and Tables
 ------------------

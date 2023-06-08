@@ -89,4 +89,5 @@ def login_menu():
             print("Invalid input.")
 
 
-login_menu()
+if __name__ == "__main__":
+    login_menu()

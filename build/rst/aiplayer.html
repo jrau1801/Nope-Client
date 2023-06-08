@@ -14,7 +14,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="events module" href="events.html" />
-    <link rel="prev" title="Welcome to Nope-Client’s documentation!" href="../index.html" />
+    <link rel="prev" title="Nope-Client" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -56,6 +56,24 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="aiplayer.can_joker_fill_set">
+<span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">can_joker_fill_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">card_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_joker_cards</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required_count</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.can_joker_fill_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if joker cards in hand can fill up a set
+:param card_set: card-set to check
+:param num_joker_cards: number of joker cards in hand
+:param required_count: number of cards needed for a complete set
+:return: True if set can be filled, False if not</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aiplayer.count_joker_cards">
+<span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">count_joker_cards</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.count_joker_cards" title="Permalink to this definition">¶</a></dt>
+<dd><p>Counts the joker cards in your hand
+:param hand: player hand
+:return: number of joker cards</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="aiplayer.handle_reboot_and_joker">
 <span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">handle_reboot_and_joker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">move</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.handle_reboot_and_joker" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handles the move if the top-card or last-top-card is a joker or a reboot card
@@ -72,6 +90,15 @@
 :param last_topCard: top-card under see-through
 :param hand:
 :return: built move</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="aiplayer.joker_fill_set">
+<span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">joker_fill_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">card_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required_count</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.joker_fill_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills the uncompleted set with joker cards
+:param card_set: card-set to fill
+:param required_count: number of cards needed for a complete set
+:return: filled card-set</p>
 </dd></dl>
 
 </section>
@@ -98,8 +125,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">aiplayer module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.ai_player_build_move"><code class="docutils literal notranslate"><span class="pre">ai_player_build_move()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.build"><code class="docutils literal notranslate"><span class="pre">build()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aiplayer.can_joker_fill_set"><code class="docutils literal notranslate"><span class="pre">can_joker_fill_set()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aiplayer.count_joker_cards"><code class="docutils literal notranslate"><span class="pre">count_joker_cards()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.handle_reboot_and_joker"><code class="docutils literal notranslate"><span class="pre">handle_reboot_and_joker()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.handle_see_through"><code class="docutils literal notranslate"><span class="pre">handle_see_through()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aiplayer.joker_fill_set"><code class="docutils literal notranslate"><span class="pre">joker_fill_set()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">events module</a></li>
@@ -110,7 +140,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../index.html" title="previous chapter">Welcome to Nope-Client’s documentation!</a></li>
+      <li>Previous: <a href="../index.html" title="previous chapter">Nope-Client</a></li>
       <li>Next: <a href="events.html" title="next chapter">events module</a></li>
   </ul></li>
 </ul>

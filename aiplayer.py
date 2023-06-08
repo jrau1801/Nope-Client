@@ -50,7 +50,7 @@ def build(move, topCard, hand):
     required_count = topCard['value']
     matching_cards = []
     all_matching_cards = []
-    num_joker_cards = 2
+    num_joker_cards = 0
 
     # Searching for matching cards in hand
     for required_color in required_colors:
@@ -65,7 +65,8 @@ def build(move, topCard, hand):
     for card_set in all_matching_cards:
 
         if can_joker_fill_set(card_set, num_joker_cards, required_count):
-            card_set = joker_fill_set(card_set, required_count)
+            index = all_matching_cards.index(card_set)
+            all_matching_cards[index] = joker_fill_set(card_set, required_count)
 
         print(card_set)
 

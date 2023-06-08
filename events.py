@@ -225,6 +225,7 @@ def game_status(data, _):
     :param _: placeholder
     :return: nothing
     """
+    time.sleep(0.5)
     print(data['message'])
     print(data['winner'])
 

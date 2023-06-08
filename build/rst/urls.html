@@ -32,7 +32,96 @@
             
   <section id="module-urls">
 <span id="urls-module"></span><h1>urls module<a class="headerlink" href="#module-urls" title="Permalink to this heading">¶</a></h1>
-<p>Rest-API Endpoints</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="urls.PlayerAPI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">urls.</span></span><span class="sig-name descname"><span class="pre">PlayerAPI</span></span><a class="headerlink" href="#urls.PlayerAPI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class representing the API endpoints for player-related information.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_game_url">
+<span class="sig-name descname"><span class="pre">get_game_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_game_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for a game’s information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_match_url">
+<span class="sig-name descname"><span class="pre">get_match_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">match_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_match_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for a match’s information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_games_url">
+<span class="sig-name descname"><span class="pre">get_player_games_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_games_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for games played by a player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_games_won_url">
+<span class="sig-name descname"><span class="pre">get_player_games_won_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_games_won_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for games won by a player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_matches_url">
+<span class="sig-name descname"><span class="pre">get_player_matches_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_matches_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for matches played by a player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_matches_won_url">
+<span class="sig-name descname"><span class="pre">get_player_matches_won_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_matches_won_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for matches won by a player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_stats_url">
+<span class="sig-name descname"><span class="pre">get_player_stats_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_stats_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for a player’s statistics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_tournament_url">
+<span class="sig-name descname"><span class="pre">get_player_tournament_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_tournament_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for a player’s tournaments.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_tournaments_hosted_url">
+<span class="sig-name descname"><span class="pre">get_player_tournaments_hosted_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_tournaments_hosted_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for tournaments hosted by a player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_tournaments_stats_url">
+<span class="sig-name descname"><span class="pre">get_player_tournaments_stats_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_tournaments_stats_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for tournament statistics of a player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_tournaments_won_url">
+<span class="sig-name descname"><span class="pre">get_player_tournaments_won_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_tournaments_won_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for tournaments won by a player.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_player_url">
+<span class="sig-name descname"><span class="pre">get_player_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spielername</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_player_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for a player’s information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_tournament_stats_url">
+<span class="sig-name descname"><span class="pre">get_tournament_stats_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tunier_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_tournament_stats_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for tournament statistics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="urls.PlayerAPI.get_tournament_url">
+<span class="sig-name descname"><span class="pre">get_tournament_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tunier_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#urls.PlayerAPI.get_tournament_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the URL for a tournament’s information.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -57,7 +146,10 @@
 <li class="toctree-l1"><a class="reference internal" href="aiplayer.html">aiplayer module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="events.html">events module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">urls module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">urls module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#urls.PlayerAPI"><code class="docutils literal notranslate"><span class="pre">PlayerAPI</span></code></a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">

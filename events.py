@@ -5,6 +5,7 @@ import socketio
 import threading
 import aiplayer as ai
 from main import tournament_menu
+from format import *
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
 register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
@@ -221,8 +222,8 @@ def game_state(data, _):
 
         if player_id == current_player['id']:
             print("YOUR HAND: ")
-            for card in data['hand']:
-                print(card['type'], card['color'], card['value'])
+            print_hand_formatted(hand)
+
 
 
 @sio.on("game:status")

@@ -13,6 +13,7 @@ Welcome to the Nope-Client Documentation!
    rst/events
    rst/main
    rst/urls
+   rst/format
 
 Indices and Tables
 ------------------

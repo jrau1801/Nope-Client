@@ -30,7 +30,9 @@ def print_top_card_formatted(top_card):
 
 # ANSI escape codes for text colors and formatting
 class Color:
-    # Regular colors
+    """
+    Colors and Background-Colors in many different variations
+    """
     RESET = "\033[0m"
     BLACK = "\033[0;30m"
     RED = "\033[0;31m"

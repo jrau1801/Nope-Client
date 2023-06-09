@@ -2,12 +2,6 @@ from events import *
 import time
 
 
-def play_menu():
-    print("TOURNAMENT STARTED")
-    while True:
-        pass
-
-
 def tournament_menu():
     """
     Main menu for the game
@@ -41,7 +35,6 @@ def tournament_menu():
         # Start a tournament
         elif choice == "4":
             if start_tournament():
-                play_menu()
                 break
 
         elif choice == "5":
@@ -89,4 +82,5 @@ def login_menu():
             print("Invalid input.")
 
 
-login_menu()
+if __name__ == "__main__":
+    login_menu()

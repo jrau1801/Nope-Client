@@ -4,17 +4,20 @@ import requests
 import socketio
 import threading
 import aiplayer as ai
+from main import *
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
 register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
 sio = socketio.Client()
 
+access_token = None
 player_id = None
 hand = None
 topCard = None
 last_topCard = None
 last_move = None
 current_player = None
+tournament_started = False
 
 lock = threading.Lock()
 
@@ -39,10 +42,11 @@ def login(name, password):
         return False
 
     # Save Access-Token
-    accessToken = response.json()['accessToken']
+    global access_token
+    access_token = response.json()['accessToken']
 
     # Connect to server
-    sio.connect("https://nope-server.azurewebsites.net", namespaces='/', auth={'token': accessToken})
+    sio.connect("https://nope-server.azurewebsites.net", namespaces='/', auth={'token': access_token})
 
     return True
 
@@ -118,10 +122,19 @@ def tournament_info(data, _):
     :return: nothing
     """
     with lock:
+        global tournament_started, access_token
         print("\n")
         print("TOURNAMENT INFO: ")
         print(data['message'])
         print(data['status'])
+
+        if(data['status']) == "FINISHED":
+            tournament_started = False
+            tournament_menu()
+
+        if(data['status']) == "IN_PROGRESS":
+            tournament_started = True
+
         print("-" * 20)
 
 
@@ -157,25 +170,28 @@ def list_tournaments(data, _):
     :return: nothing
     """
     with lock:
-        print("\n")
-        # Lists tournament info for all tournaments
-        content = []
-        row_content = []
 
-        for tournament in data:
+        if not tournament_started:
 
-            row_content.append(tournament['id'])
-            row_content.append(tournament['status'])
-
-            for player in tournament["players"]:
-                row_content.append(player["username"])
-
-            content.append(row_content)
+            print("\n")
+            # Lists tournament info for all tournaments
+            content = []
             row_content = []
 
-        for entry in content:
-            print(entry)
-        print("\n")
+            for tournament in data:
+
+                row_content.append(tournament['id'])
+                row_content.append(tournament['status'])
+
+                for player in tournament["players"]:
+                    row_content.append(player["username"])
+
+                content.append(row_content)
+                row_content = []
+
+            for entry in content:
+                print(entry)
+            print("\n")
 
 
 @sio.on("game:makeMove")
@@ -203,16 +219,18 @@ def game_state(data, _):
     :return: nothing
     """
     with lock:
-        print("\n")
-        global topCard, hand, last_move, current_player, last_topCard
+        global topCard, hand, last_move, current_player, last_topCard, player_id
         topCard = data['topCard']
         last_topCard = data['lastTopCard']
         hand = data['hand']
         last_move = data['lastMove']
         current_player = data['currentPlayer']
 
-        for card in data['hand']:
-            print(card['type'], card['color'], card['value'])
+        if player_id == current_player['id']:
+            print(f"Top-Card: \n{topCard['type']} : {topCard['color']} : {topCard['value']}\n")
+            print("YOUR HAND: ")
+            for card in data['hand']:
+                print(card['type'], card['color'], card['value'])
 
 
 @sio.on("game:status")
@@ -223,8 +241,9 @@ def game_status(data, _):
     :param _: placeholder
     :return: nothing
     """
+    time.sleep(0.5)
     print(data['message'])
-    print(data['winner'])
+    print(f"WINNER: {data['winner']['id']} : {data['winner']['username']} : {data['winner']['points']}")
 
 
 # Client -> Server
@@ -269,6 +288,8 @@ def start_tournament():
     """
     response = sio.call("tournament:start")
     print(response)
+
+    global tournament_started
 
     if response['success']:
         return True

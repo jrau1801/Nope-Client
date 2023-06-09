@@ -25,8 +25,8 @@ def print_top_card_formatted(top_card):
     :param top_card: top-card to print
     :return: returns nothing
     """
-    print(f"{Color.CYAN_BACKGROUND} {Color.BLACK_BOLD} TOP-CARD: {Color.RESET}")
-    print(f"{Color.CYAN_BACKGROUND} {Color.BLACK_BOLD} {top_card['type']} : {top_card['color']} : {top_card['value']} "
+    print(f"{Color.CYAN_BACKGROUND} + {Color.BLACK_BOLD} TOP-CARD: {Color.RESET}")
+    print(f"{Color.CYAN_BACKGROUND} + {Color.BLACK_BOLD} {top_card['type']} : {top_card['color']} : {top_card['value']} "
           f"{Color.RESET}\n")
 
 

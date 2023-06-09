@@ -95,6 +95,12 @@ def check_for_action(hand):
 
 
 def check_same_color_hand_field(hand, top_card):
+    """
+    check if player has card with same color as top-card
+    :param hand: player hand
+    :param top_card: current top-card
+    :return: if color is same return True, otherwise False
+    """
     same_color = False
 
     for card in hand:

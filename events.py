@@ -4,7 +4,7 @@ import requests
 import socketio
 import threading
 import aiplayer as ai
-from main import *
+from main import tournament_menu
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
 register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
@@ -150,13 +150,6 @@ def match_info(data, _):
         print("\n")
         print("MATCH INFO: ")
         print(data['message'])
-
-        opponents = data['match']['opponents']
-
-        # Print the usernames
-        for opponent in opponents:
-            pass
-            # print(opponent['username'])
 
         print("-" * 20)
 

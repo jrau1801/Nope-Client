@@ -69,6 +69,10 @@ def build(move, topCard, hand):
         move = handle_only_action_left(move, hand, topCard)
         return move
 
+    if check_for_reboot(hand) and topCard['value'] == 3 and move['type'] is None:
+        move = play_reboot_first(move, hand)
+        return move
+
     # Searching for matching cards in hand
     for required_color in required_colors:
         for card in hand:
@@ -156,6 +160,32 @@ def filter_all_matching(all_matching_cards, required_count):
     """
     all_matching_cards = [card_set for card_set in all_matching_cards if len(card_set) >= required_count]
     return all_matching_cards
+
+
+def get_reboot(hand):
+    for card in hand:
+        if card['type'] == 'reboot':
+            return card
+
+
+def play_reboot_first(move, hand):
+    move['type'] = 'put'
+    move.update({"card1": get_reboot(hand)})
+
+    return move
+
+
+def check_for_reboot(hand):
+    """
+    Checks if the hand has a reboot card
+    :param hand: player hand
+    :return: True if reboot is in hand, False if not
+    """
+    for card in hand:
+        if card['type'] == 'reboot':
+            return True
+
+    return False
 
 
 def check_for_action(hand):
@@ -397,12 +427,12 @@ def handle_reboot_and_joker(move, hand):
 #     {"type": "number", "color": "yellow-blue", "value": 3},
 #     {"type": "number", "color": "blue-green", "value": 3},
 #     {"type": "number", "color": "yellow", "value": 2},
-#     {"type": "reboot", "color": "red", "value": None},
+#     {"type": "reboot", "color": "multi", "value": None},
 #     {"type": "number", "color": "yellow", "value": 3},
 #     {"type": "number", "color": "red-green", "value": 2},
 #     {"type": "reboot", "color": "multi", "value": None},
 # ]
 #
-# top_cardTest = {"type": "number", "color": "yellow-red", "value": 2}
+# top_cardTest = {"type": "number", "color": "yellow-red", "value": 3}
 # last_topCardTest = {"type": "see-through", "color": "blue", "value": None}
 # moveTest = ai_player_build_move(handTest, top_cardTest, last_topCardTest, {"type": "put"}, None)

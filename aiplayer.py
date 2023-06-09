@@ -432,6 +432,7 @@ def handle_reboot_and_joker(move, hand):
 
     return move
 
+
 # Example hand
 handTest = [
     {"type": "joker", "color": "multi", "value": 1},

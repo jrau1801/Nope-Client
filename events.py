@@ -220,7 +220,6 @@ def game_state(data, _):
         current_player = data['currentPlayer']
 
         if player_id == current_player['id']:
-            print(f"Top-Card: \n{topCard['type']} : {topCard['color']} : {topCard['value']}\n")
             print("YOUR HAND: ")
             for card in data['hand']:
                 print(card['type'], card['color'], card['value'])

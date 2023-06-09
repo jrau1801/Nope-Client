@@ -434,18 +434,18 @@ def handle_reboot_and_joker(move, hand):
 
 
 # Example hand
-# handTest = [
-#     {"type": "joker", "color": "multi", "value": 1},
-#     {"type": "number", "color": "yellow-blue", "value": 3},
-#     {"type": "number", "color": "blue-green", "value": 3},
-#     {"type": "number", "color": "yellow", "value": 2},
-#     {"type": "reboot", "color": "multi", "value": None},
-#     {"type": "number", "color": "yellow", "value": 3},
-#     {"type": "number", "color": "red-green", "value": 2},
-#     {"type": "reboot", "color": "multi", "value": None},
-# ]
-#
-# top_cardTest = {"type": "number", "color": "yellow-red", "value": 3}
-# last_topCardTest = {"type": "see-through", "color": "blue", "value": None}
-# moveTest = ai_player_build_move(handTest, top_cardTest, last_topCardTest, {"type": "put"}, None)
-# print_hand_formatted(handTest)
+handTest = [
+    {"type": "joker", "color": "multi", "value": 1},
+    {"type": "number", "color": "yellow-blue", "value": 3},
+    {"type": "number", "color": "blue-green", "value": 3},
+    {"type": "number", "color": "yellow", "value": 2},
+    {"type": "reboot", "color": "multi", "value": None},
+    {"type": "number", "color": "yellow", "value": 3},
+    {"type": "number", "color": "red-green", "value": 2},
+    {"type": "reboot", "color": "multi", "value": None},
+]
+
+top_cardTest = {"type": "number", "color": "yellow-red", "value": 3}
+last_topCardTest = {"type": "see-through", "color": "blue", "value": None}
+moveTest = ai_player_build_move(handTest, top_cardTest, last_topCardTest, {"type": "put"}, None)
+print_hand_formatted(handTest)

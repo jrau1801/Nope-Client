@@ -17,9 +17,9 @@ def print_hand_formatted(hand):
     :param hand: hand to print
     :return: returns nothing
     """
-    print(f"\n{Color.PINK_BACKGROUND} - {Color.BLACK_BOLD} YOUR HAND: {Color.RESET}")
+    print(f"\n{Color.BLUE_BACKGROUND_BRIGHT} - {Color.BLACK_BOLD} YOUR HAND: {Color.RESET}")
     for card in hand:
-        print(f"{Color.PINK_BACKGROUND} + {Color.BLACK_BOLD} {card['type']} : {card['color']} : {card['value']} "
+        print(f"{Color.BLUE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD} {card['type']} : {card['color']} : {card['value']} "
               f"{Color.RESET}")
 
 

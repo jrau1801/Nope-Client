@@ -4,12 +4,13 @@ import requests
 import socketio
 import threading
 import aiplayer as ai
-from main import tournament_menu
+from main import *
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
 register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
 sio = socketio.Client()
 
+access_token = None
 player_id = None
 hand = None
 topCard = None
@@ -41,10 +42,11 @@ def login(name, password):
         return False
 
     # Save Access-Token
-    accessToken = response.json()['accessToken']
+    global access_token
+    access_token = response.json()['accessToken']
 
     # Connect to server
-    sio.connect("https://nope-server.azurewebsites.net", namespaces='/', auth={'token': accessToken})
+    sio.connect("https://nope-server.azurewebsites.net", namespaces='/', auth={'token': access_token})
 
     return True
 
@@ -120,7 +122,7 @@ def tournament_info(data, _):
     :return: nothing
     """
     with lock:
-        global tournament_started
+        global tournament_started, access_token
         print("\n")
         print("TOURNAMENT INFO: ")
         print(data['message'])
@@ -129,6 +131,9 @@ def tournament_info(data, _):
         if(data['status']) == "FINISHED":
             tournament_started = False
             tournament_menu()
+
+        if(data['status']) == "IN_PROGRESS":
+            tournament_started = True
 
         print("-" * 20)
 
@@ -238,7 +243,7 @@ def game_status(data, _):
     """
     time.sleep(0.5)
     print(data['message'])
-    print(data['winner'])
+    print(f"WINNER: {data['winner']['id']} : {data['winner']['username']} : {data['winner']['points']}")
 
 
 # Client -> Server
@@ -287,5 +292,4 @@ def start_tournament():
     global tournament_started
 
     if response['success']:
-        tournament_started = True
         return True

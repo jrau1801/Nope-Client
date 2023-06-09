@@ -34,7 +34,8 @@ def tournament_menu():
 
         # Start a tournament
         elif choice == "4":
-            start_tournament()
+            if start_tournament():
+                break
 
         elif choice == "5":
             sio.disconnect()

@@ -198,7 +198,6 @@ def make_move(data):
     with lock:
         global topCard, hand
         print("\n")
-        print(data['message'])
         move = ai.ai_player_build_move(hand, topCard, last_topCard, last_move, current_player)
         time.sleep(0.5)
         return move
@@ -221,6 +220,7 @@ def game_state(data, _):
         current_player = data['currentPlayer']
 
         if player_id == current_player['id']:
+            print(f"\nIts Your Turn!")
             print_hand_formatted(hand)
 
 

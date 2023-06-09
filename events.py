@@ -4,6 +4,7 @@ import requests
 import socketio
 import threading
 import aiplayer as ai
+from main import tournament_menu
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
 register_url = 'https://nope-server.azurewebsites.net/api/auth/register'
@@ -127,6 +128,7 @@ def tournament_info(data, _):
 
         if(data['status']) == "FINISHED":
             tournament_started = False
+            tournament_menu()
 
         print("-" * 20)
 

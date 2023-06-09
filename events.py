@@ -129,11 +129,11 @@ def tournament_info(data, _):
         print(data['message'])
         print(data['status'])
 
-        if(data['status']) == "FINISHED":
+        if (data['status']) == "FINISHED":
             tournament_started = False
             tournament_menu()
 
-        if(data['status']) == "IN_PROGRESS":
+        if (data['status']) == "IN_PROGRESS":
             tournament_started = True
 
         print("-" * 20)
@@ -221,9 +221,7 @@ def game_state(data, _):
         current_player = data['currentPlayer']
 
         if player_id == current_player['id']:
-            print("YOUR HAND: ")
             print_hand_formatted(hand)
-
 
 
 @sio.on("game:status")

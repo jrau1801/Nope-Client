@@ -83,7 +83,9 @@ class PlayerAPI:
 
 
 # Usage example:
-# api = PlayerAPI()
-#
-# player_url = api.get_player_stats_url('Jan2')
-# print(player_url)
+api = PlayerAPI()
+
+player_url = api.get_player_stats_url('Jan2')
+print(player_url)
+player_url = api.get_player_stats_url('Jan')
+print(player_url)

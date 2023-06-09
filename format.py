@@ -1,8 +1,31 @@
 def print_move_formatted(move):
+    """
+    Prints a formatted move for clearer output
+    :param move: move to print
+    :return: returns nothing
+    """
     for key, value in move.items():
         if isinstance(value, dict):
             value = ' : '.join(str(v) for v in value.values())
         print(f'{Color.GREEN_BACKGROUND} + {Color.BLACK_BOLD} {key}: {value} {Color.RESET}')
+
+
+def print_hand_formatted(hand):
+    """
+    Prints a formatted hand for clearer output
+    :param hand: hand to print
+    :return: returns nothing
+    """
+    pass
+
+
+def print_top_card_formatted(top_card):
+    """
+    Prints a formatted top-card for clearer output
+    :param top_card: top-card to print
+    :return: returns nothing
+    """
+    pass
 
 
 # ANSI escape codes for text colors and formatting
@@ -77,4 +100,3 @@ class Color:
     PINK_BACKGROUND_BRIGHT = "\033[0;105m"
     CYAN_BACKGROUND_BRIGHT = "\033[0;106m"
     WHITE_BACKGROUND_BRIGHT = "\033[0;107m"
-

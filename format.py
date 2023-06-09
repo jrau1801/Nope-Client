@@ -19,15 +19,17 @@ def print_hand_formatted(hand):
     pass
 
 
-def print_top_card_formatted(top_card):
+def print_top_card_formatted(top_card, prefix=""):
     """
     Prints a formatted top-card for clearer output
+    :param prefix: add before top-card print
     :param top_card: top-card to print
     :return: returns nothing
     """
-    print(f"{Color.CYAN_BACKGROUND} + {Color.BLACK_BOLD} TOP-CARD: {Color.RESET}")
-    print(f"{Color.CYAN_BACKGROUND} + {Color.BLACK_BOLD} {top_card['type']} : {top_card['color']} : {top_card['value']} "
-          f"{Color.RESET}\n")
+    print(f"{Color.CYAN_BACKGROUND} + {Color.BLACK_BOLD} {prefix}TOP-CARD: {Color.RESET}")
+    print(
+        f"{Color.CYAN_BACKGROUND} + {Color.BLACK_BOLD} {top_card['type']} : {top_card['color']} : {top_card['value']} "
+        f"{Color.RESET}\n")
 
 
 # ANSI escape codes for text colors and formatting

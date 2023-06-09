@@ -163,12 +163,23 @@ def filter_all_matching(all_matching_cards, required_count):
 
 
 def get_reboot(hand):
+    """
+    Gets a reboot card from hand
+    :param hand: player hand
+    :return: a reboot card
+    """
     for card in hand:
         if card['type'] == 'reboot':
             return card
 
 
 def play_reboot_first(move, hand):
+    """
+    Play a reboot card
+    :param move: empty move
+    :param hand: player hand
+    :return: built move
+    """
     move['type'] = 'put'
     move.update({"card1": get_reboot(hand)})
 

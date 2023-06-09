@@ -4,6 +4,7 @@ def print_move_formatted(move):
     :param move: move to print
     :return: returns nothing
     """
+    print(f"{Color.GREEN_BACKGROUND} - {Color.BLACK_BOLD} MOVE: {Color.RESET}")
     for key, value in move.items():
         if isinstance(value, dict):
             value = ' : '.join(str(v) for v in value.values())
@@ -16,21 +17,30 @@ def print_hand_formatted(hand):
     :param hand: hand to print
     :return: returns nothing
     """
-    pass
+    print(f"\n{Color.PINK_BACKGROUND} - {Color.BLACK_BOLD} YOUR HAND: {Color.RESET}")
+    for card in hand:
+        print(f"{Color.PINK_BACKGROUND} + {Color.BLACK_BOLD} {card['type']} : {card['color']} : {card['value']} "
+              f"{Color.RESET}")
 
 
-def print_top_card_formatted(top_card):
+def print_top_card_formatted(top_card, prefix=""):
     """
     Prints a formatted top-card for clearer output
+    :param prefix: add before top-card print
     :param top_card: top-card to print
     :return: returns nothing
     """
-    pass
+    print(f"{Color.CYAN_BACKGROUND} - {Color.BLACK_BOLD} {prefix}TOP-CARD: {Color.RESET}")
+    print(
+        f"{Color.CYAN_BACKGROUND} + {Color.BLACK_BOLD} {top_card['type']} : {top_card['color']} : {top_card['value']} "
+        f"{Color.RESET}\n")
 
 
 # ANSI escape codes for text colors and formatting
 class Color:
-    # Regular colors
+    """
+    Colors and Background-Colors in many different variations
+    """
     RESET = "\033[0m"
     BLACK = "\033[0;30m"
     RED = "\033[0;31m"

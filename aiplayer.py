@@ -1,5 +1,6 @@
 from format import *
 
+
 def ai_player_build_move(hand, top_card, last_topCard, last_move, currentPlayer):
     """
     AI-Player builds a move
@@ -19,7 +20,7 @@ def ai_player_build_move(hand, top_card, last_topCard, last_move, currentPlayer)
     }
 
     if top_card['type'] == 'see-through':
-        print(f"LAST-TOP-CARD:\n{last_topCard['type']} : {last_topCard['color']} : {last_topCard['value']}\n")
+        print_top_card_formatted(last_topCard, prefix="LAST-")
         move = handle_see_through(move, last_topCard, hand)
 
     if top_card['type'] == 'number':
@@ -41,7 +42,7 @@ def ai_player_build_move(hand, top_card, last_topCard, last_move, currentPlayer)
             move['type'] = 'take'
 
     # logger.info(f"{currentPlayer['username']}: {move}")
-    print(f"TOP-CARD:\n{top_card['type']} : {top_card['color']} : {top_card['value']}\n")
+    print_top_card_formatted(top_card)
     print_move_formatted(move)
 
     return move
@@ -59,7 +60,6 @@ def build(move, topCard, hand):
     required_count = topCard['value']
     matching_cards = []
     all_matching_cards = []
-    num_joker_cards = count_joker_cards(hand)
 
     if check_for_action(hand) and not check_same_color_hand_field(hand, topCard):
         move = handle_only_action_left(move, hand, topCard)
@@ -67,6 +67,10 @@ def build(move, topCard, hand):
 
     if check_for_only_action(hand):
         move = handle_only_action_left(move, hand, topCard)
+        return move
+
+    if check_for_reboot(hand) and topCard['value'] == 3 and move['type'] is None:
+        move = play_reboot_first(move, hand)
         return move
 
     # Searching for matching cards in hand
@@ -81,18 +85,118 @@ def build(move, topCard, hand):
 
         matching_cards = []
 
-    for card_set in all_matching_cards:
+    move = filter_and_weigh(all_matching_cards, hand, required_count, move)
 
+    return move
+
+
+def filter_and_weigh(all_matching_cards, hand, required_count, move):
+    """
+    Starts filtering possible card sets and weigh cards to find best set
+    :param all_matching_cards: cards with same color or joker
+    :param hand: player hand
+    :param required_count: number of cards needed
+    :param move: empty move
+    :return: built move
+    """
+    num_joker_cards = count_joker_cards(hand)
+
+    for card_set in all_matching_cards:
         if can_joker_fill_set(card_set, num_joker_cards, required_count):
             index = all_matching_cards.index(card_set)
             all_matching_cards[index] = joker_fill_set(card_set, required_count)
 
-        if len(card_set) >= required_count:
-            move['type'] = 'put'
-            move.update({f'card{i + 1}': card_set[i] for i in range(required_count)})
-            return move
+    all_matching_cards = filter_all_matching(all_matching_cards, required_count)
+
+    full_set = weigh_sets(all_matching_cards)
+
+    if len(full_set) >= required_count:
+        move['type'] = 'put'
+        move.update({f'card{i + 1}': full_set[i] for i in range(required_count)})
+        return move
 
     return move
+
+
+def weigh_sets(all_matching_cards):
+    """
+    Weighs all available card sets based on their card type and color
+    :param all_matching_cards: available sets
+    :return: best set
+    """
+    best_set = []
+
+    weighed_sets = []
+
+    for card_set in all_matching_cards:
+        weigh_value = 0
+        for card in card_set:
+
+            if card['type'] == 'joker':
+                weigh_value += 50
+
+            if card['type'] == 'number' and len(card['color'].split("-")) == 2:
+                weigh_value += 30
+
+            if card['type'] == 'number' and len(card['color'].split("-")) == 1:
+                weigh_value += 20
+
+        weighed_sets.append({weigh_value: card_set})
+
+    if not weighed_sets:
+        return best_set
+
+    max_value = max(weighed_sets, key=lambda x: max(x.keys()))
+    best_set = max_value[max(max_value.keys())]
+    return best_set
+
+
+def filter_all_matching(all_matching_cards, required_count):
+    """
+    Removes card sets where the length is less than the required card count
+    :param all_matching_cards: array with card sets
+    :param required_count: number of cards needed
+    :return: filtered card sets
+    """
+    all_matching_cards = [card_set for card_set in all_matching_cards if len(card_set) >= required_count]
+    return all_matching_cards
+
+
+def get_reboot(hand):
+    """
+    Gets a reboot card from hand
+    :param hand: player hand
+    :return: a reboot card
+    """
+    for card in hand:
+        if card['type'] == 'reboot':
+            return card
+
+
+def play_reboot_first(move, hand):
+    """
+    Play a reboot card
+    :param move: empty move
+    :param hand: player hand
+    :return: built move
+    """
+    move['type'] = 'put'
+    move.update({"card1": get_reboot(hand)})
+
+    return move
+
+
+def check_for_reboot(hand):
+    """
+    Checks if the hand has a reboot card
+    :param hand: player hand
+    :return: True if reboot is in hand, False if not
+    """
+    for card in hand:
+        if card['type'] == 'reboot':
+            return True
+
+    return False
 
 
 def check_for_action(hand):
@@ -341,8 +445,7 @@ def handle_reboot_and_joker(move, hand):
 #     {"type": "reboot", "color": "multi", "value": None},
 # ]
 #
-# top_cardTest = {"type": "number", "color": "yellow", "value": 3}
+# top_cardTest = {"type": "number", "color": "yellow-red", "value": 3}
 # last_topCardTest = {"type": "see-through", "color": "blue", "value": None}
 # moveTest = ai_player_build_move(handTest, top_cardTest, last_topCardTest, {"type": "put"}, None)
-#
-# print_move_formatted(moveTest)
+# print_hand_formatted(handTest)

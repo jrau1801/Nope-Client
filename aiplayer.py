@@ -1,3 +1,5 @@
+from format import *
+
 def ai_player_build_move(hand, top_card, last_topCard, last_move, currentPlayer):
     """
     AI-Player builds a move
@@ -330,7 +332,7 @@ def handle_reboot_and_joker(move, hand):
 # Example hand
 handTest = [
     {"type": "joker", "color": "multi", "value": 1},
-    {"type": "number", "color": "yellow-blue", "value": 1},
+    {"type": "number", "color": "yellow-blue", "value": 3},
     {"type": "number", "color": "blue-green", "value": 3},
     {"type": "number", "color": "yellow", "value": 2},
     {"type": "reboot", "color": "multi", "value": None},
@@ -339,8 +341,8 @@ handTest = [
     {"type": "reboot", "color": "multi", "value": None},
 ]
 
-top_cardTest = {"type": "see-through", "color": "green", "value": None}
+top_cardTest = {"type": "number", "color": "yellow", "value": 3}
 last_topCardTest = {"type": "see-through", "color": "blue", "value": None}
 moveTest = ai_player_build_move(handTest, top_cardTest, last_topCardTest, {"type": "put"}, None)
 
-print(moveTest)
+print_move_formatted(moveTest)

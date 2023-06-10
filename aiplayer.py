@@ -1,7 +1,7 @@
 from format import *
 
 
-def ai_player_build_move(hand, top_card, last_topCard, last_move, currentPlayer):
+def ai_player_build_move(hand, top_card, last_topCard, last_move):
     """
     AI-Player builds a move
     :param last_topCard: card under see-through

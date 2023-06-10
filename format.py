@@ -30,10 +30,10 @@ def print_top_card_formatted(top_card, prefix=""):
     :param top_card: top-card to print
     :return: returns nothing
     """
-    print(f"{Color.CYAN_BACKGROUND} - {Color.BLACK_BOLD} {prefix}TOP-CARD: {Color.RESET}")
+    print(f"\n{Color.CYAN_BACKGROUND} - {Color.BLACK_BOLD} {prefix}TOP-CARD: {Color.RESET}")
     print(
         f"{Color.CYAN_BACKGROUND} + {Color.BLACK_BOLD} {top_card['type']} : {top_card['color']} : {top_card['value']} "
-        f"{Color.RESET}\n")
+        f"{Color.RESET}")
 
 
 # ANSI escape codes for text colors and formatting

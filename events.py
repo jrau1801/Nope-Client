@@ -219,6 +219,7 @@ def game_state(data, _):
         if player_id == current_player['id']:
             print(f"\nIts Your Turn!")
             print_hand_formatted(hand)
+            print_top_card_formatted(topCard)
 
 
 @sio.on("game:status")

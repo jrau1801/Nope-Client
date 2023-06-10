@@ -1,5 +1,6 @@
 from events import *
 import time
+from format import *
 
 
 def tournament_menu():
@@ -10,13 +11,10 @@ def tournament_menu():
     while True:
         # Wait for server
         time.sleep(0.5)
-        print("[1] Create Tournament\n"
-              "[2] Join Tournament\n"
-              "[3] Leave Tournament\n"
-              "[4] Start Tournament\n"
-              "[5] Disconnect: ")
 
-        choice = input("Choose: ")
+        print_menu()
+
+        choice = input(f"{Color.BLUE_BACKGROUND_BRIGHT} - {Color.BLACK_BOLD}Choose:{Color.RESET} ")
 
         # Create a tournament
         if choice == "1":
@@ -34,12 +32,12 @@ def tournament_menu():
 
         # Start a tournament
         elif choice == "4":
-            if start_tournament():
-                break
+            start_tournament()
 
         elif choice == "5":
             sio.disconnect()
             break
+
         else:
             print("Invalid input.")
 
@@ -57,7 +55,7 @@ def login_menu():
 
         # Login to the server
         if choice == "1":
-            print("Login credentials:")
+            print("\nLogin credentials:")
             username = input("Benutzername: ")
             password = input("Passwort: ")
 

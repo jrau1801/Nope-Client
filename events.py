@@ -4,7 +4,6 @@ import requests
 import socketio
 import threading
 import aiplayer as ai
-from main import tournament_menu
 from format import *
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
@@ -35,7 +34,6 @@ def login(name, password):
 
     # Try to get Access-Token
     try:
-        print(response.json()['accessToken'])
         player = response.json()['user']
         global player_id
         player_id = (player['id'])
@@ -77,7 +75,7 @@ def connect():
     Connect to server
     :return: nothing
     """
-    print("Connected to server.")
+    print(f"\n{Color.GREEN_BOLD}Connected to server.{Color.RESET}")
 
 
 @sio.event
@@ -86,7 +84,7 @@ def disconnect():
     Disconnect from server
     :return: nothing
     """
-    print("Disconnected from server")
+    print(f"\n{Color.GREEN_BOLD}Disconnected from server{Color.RESET}")
 
 
 @sio.event
@@ -131,7 +129,7 @@ def tournament_info(data, _):
 
         if (data['status']) == "FINISHED":
             tournament_started = False
-            tournament_menu()
+            print_menu()
 
         if (data['status']) == "IN_PROGRESS":
             tournament_started = True
@@ -167,7 +165,7 @@ def list_tournaments(data, _):
 
         if not tournament_started:
 
-            print("\n")
+            print(f"\n{Color.WHITE_BRIGHT}")
             # Lists tournament info for all tournaments
             content = []
             row_content = []
@@ -185,7 +183,7 @@ def list_tournaments(data, _):
 
             for entry in content:
                 print(entry)
-            print("\n")
+            print(f"\n{Color.RESET}")
 
 
 @sio.on("game:makeMove")
@@ -198,7 +196,6 @@ def make_move(data):
     with lock:
         global topCard, hand
         print("\n")
-        print(data['message'])
         move = ai.ai_player_build_move(hand, topCard, last_topCard, last_move, current_player)
         time.sleep(0.5)
         return move
@@ -221,7 +218,9 @@ def game_state(data, _):
         current_player = data['currentPlayer']
 
         if player_id == current_player['id']:
+            print(f"\nIts Your Turn!")
             print_hand_formatted(hand)
+            print_top_card_formatted(topCard)
 
 
 @sio.on("game:status")
@@ -247,7 +246,8 @@ def create_tournament(num_best_of_matches):
     :return: nothing
     """
     response = sio.call("tournament:create", num_best_of_matches)
-    print(response)
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT CREATED" if response['success'] else f"ERROR AT TOURNAMENT CREATION"
+                                                                                f"{Color.RESET}")
 
 
 # tournament:join
@@ -258,7 +258,9 @@ def join_tournament(tournament_id):
     :return: nothing
     """
     response = sio.call("tournament:join", tournament_id)
-    print(response)
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT JOINED{Color.RESET}"
+          if response['success'] else f"\n{Color.RED_BOLD}{response['error']['message']}"
+                                      f"{Color.RESET}\n")
 
 
 # tournament:leave
@@ -268,7 +270,9 @@ def leave_tournament():
     :return: nothing
     """
     response = sio.call("tournament:leave")
-    print("TOURNAMENT LEAVE: ", response)
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT LEFT{Color.RESET}"
+          if response['success'] else f"\n{Color.RED_BOLD}{response['error']['message']}"
+                                      f"{Color.RESET}\n")
 
 
 # tournament:start
@@ -278,9 +282,10 @@ def start_tournament():
     :return: true if successful, false otherwise
     """
     response = sio.call("tournament:start")
-    print(response)
 
-    global tournament_started
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT STARTED{Color.RESET}"
+          if response['success'] else f"\n{Color.RED_BOLD}{response['error']['message']}"
+                                      f"{Color.RESET}\n")
 
     if response['success']:
         return True

@@ -8,7 +8,6 @@ def ai_player_build_move(hand, top_card, last_topCard, last_move):
     :param hand: Current hand
     :param top_card: card last played by other player
     :param last_move: last move you made
-    :param currentPlayer: player whose turn it is
     :return: built move
     """
     move = {

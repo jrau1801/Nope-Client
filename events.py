@@ -76,7 +76,7 @@ def connect():
     Connect to server
     :return: nothing
     """
-    print("Connected to server.")
+    print(f"\n{Color.GREEN_BOLD}Connected to server.{Color.RESET}")
 
 
 @sio.event
@@ -85,7 +85,7 @@ def disconnect():
     Disconnect from server
     :return: nothing
     """
-    print("Disconnected from server")
+    print(f"\n{Color.GREEN_BOLD}Disconnected from server{Color.RESET}")
 
 
 @sio.event
@@ -166,7 +166,7 @@ def list_tournaments(data, _):
 
         if not tournament_started:
 
-            print("\n")
+            print(f"\n{Color.WHITE_BRIGHT}")
             # Lists tournament info for all tournaments
             content = []
             row_content = []
@@ -184,7 +184,7 @@ def list_tournaments(data, _):
 
             for entry in content:
                 print(entry)
-            print("\n")
+            print(f"\n{Color.RESET}")
 
 
 @sio.on("game:makeMove")
@@ -246,7 +246,8 @@ def create_tournament(num_best_of_matches):
     :return: nothing
     """
     response = sio.call("tournament:create", num_best_of_matches)
-    print(response)
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT CREATED" if response['success'] else f"ERROR AT TOURNAMENT CREATION"
+                                                                                f"{Color.RESET}")
 
 
 # tournament:join
@@ -257,7 +258,9 @@ def join_tournament(tournament_id):
     :return: nothing
     """
     response = sio.call("tournament:join", tournament_id)
-    print(response)
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT JOINED{Color.RESET}"
+          if response['success'] else f"{Color.RED_BOLD}{response['error']['message']}"
+                                      f"{Color.RESET}")
 
 
 # tournament:leave
@@ -267,7 +270,9 @@ def leave_tournament():
     :return: nothing
     """
     response = sio.call("tournament:leave")
-    print("TOURNAMENT LEAVE: ", response)
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT LEFT{Color.RESET}"
+          if response['success'] else f"\n{Color.RED_BOLD}{response['error']['message']}"
+                                      f"{Color.RESET}\n")
 
 
 # tournament:start
@@ -277,9 +282,10 @@ def start_tournament():
     :return: true if successful, false otherwise
     """
     response = sio.call("tournament:start")
-    print(response)
 
-    global tournament_started
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT STARTED{Color.RESET}"
+          if response['success'] else f"\n{Color.RED_BOLD}{response['error']['message']}"
+                                      f"{Color.RESET}\n")
 
     if response['success']:
         return True

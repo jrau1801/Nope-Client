@@ -10,13 +10,13 @@ def tournament_menu():
     while True:
         # Wait for server
         time.sleep(0.5)
-        print("[1] Create Tournament\n"
+        print(f"{Color.BLUE_BOLD}[1] Create Tournament\n"
               "[2] Join Tournament\n"
               "[3] Leave Tournament\n"
               "[4] Start Tournament\n"
-              "[5] Disconnect: ")
+              f"[5] Disconnect: {Color.RESET}")
 
-        choice = input("Choose: ")
+        choice = input(f"{Color.BLUE_BACKGROUND_BRIGHT} - {Color.BLACK_BOLD}Choose:{Color.RESET} ")
 
         # Create a tournament
         if choice == "1":
@@ -57,7 +57,7 @@ def login_menu():
 
         # Login to the server
         if choice == "1":
-            print("Login credentials:")
+            print("\nLogin credentials:")
             username = input("Benutzername: ")
             password = input("Passwort: ")
 

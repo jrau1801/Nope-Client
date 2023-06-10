@@ -23,16 +23,16 @@ def ai_player_build_move(hand, top_card, last_topCard, last_move):
         move = handle_see_through(move, last_topCard, hand)
 
     if top_card['type'] == 'number':
-        move = build(move, top_card, hand)
+        move = build(move, top_card, hand, last_topCard)
 
     if top_card['type'] == 'joker' or top_card['type'] == 'reboot':
         move = handle_reboot_and_joker(move, hand)
 
     if check_for_action(hand) and not check_same_color_hand_field(hand, top_card):
-        move = handle_only_action_left(move, hand, top_card)
+        move = handle_only_action_left(move, hand, top_card, last_topCard)
 
     if check_for_only_action(hand):
-        move = handle_only_action_left(move, hand, top_card)
+        move = handle_only_action_left(move, hand, top_card, last_topCard)
 
     if move['type'] is None:
         if last_move is not None and last_move['type'] == 'take':
@@ -48,7 +48,7 @@ def ai_player_build_move(hand, top_card, last_topCard, last_move):
     return move
 
 
-def build(move, topCard, hand):
+def build(move, topCard, hand, last_top_card):
     """
     Builds a move if the top card is a number card
     :param move: empty move
@@ -62,15 +62,11 @@ def build(move, topCard, hand):
     all_matching_cards = []
 
     if check_for_action(hand) and not check_same_color_hand_field(hand, topCard):
-        move = handle_only_action_left(move, hand, topCard)
+        move = handle_only_action_left(move, hand, topCard, last_top_card)
         return move
 
     if check_for_only_action(hand):
-        move = handle_only_action_left(move, hand, topCard)
-        return move
-
-    if check_for_reboot(hand) and topCard['value'] == 3 and move['type'] is None:
-        move = play_reboot_first(move, hand)
+        move = handle_only_action_left(move, hand, topCard, last_top_card)
         return move
 
     # Searching for matching cards in hand
@@ -86,6 +82,10 @@ def build(move, topCard, hand):
         matching_cards = []
 
     move = filter_and_weigh(all_matching_cards, hand, required_count, move)
+
+    if check_for_reboot(hand) and topCard['value'] == 3 and move['type'] == 'put':
+        move = play_reboot_first(move, hand)
+        return move
 
     return move
 
@@ -163,6 +163,12 @@ def filter_all_matching(all_matching_cards, required_count):
     return all_matching_cards
 
 
+def get_joker(hand):
+    for card in hand:
+        if card['type'] == 'joker':
+            return card
+
+
 def get_reboot(hand):
     """
     Gets a reboot card from hand
@@ -181,9 +187,10 @@ def play_reboot_first(move, hand):
     :param hand: player hand
     :return: built move
     """
-    move['type'] = 'put'
     move.update({"card1": get_reboot(hand)})
-    move.update({'reason': 'Reboot on hand and Top-Card has value of 3 -> Reboot'})
+    move.update({"card2": None})
+    move.update({"card3": None})
+    move.update({'reason': 'Reboot on hand and Top-Card has value of 3 and other set of 3 available -> Reboot'})
 
     return move
 
@@ -250,7 +257,7 @@ def check_same_color_hand_field(hand, top_card):
     return same_color
 
 
-def handle_only_action_left(move, hand, top_card):
+def handle_only_action_left(move, hand, top_card, last_top_card):
     """
     Plays the action cards if they're the only ones left
     :param move: empty move
@@ -258,6 +265,10 @@ def handle_only_action_left(move, hand, top_card):
     :param top_card: current card at the top
     :return: built move
     """
+
+    if top_card['type'] == 'see-through':
+        top_card = last_top_card
+
     for card in hand:
 
         if card['type'] == 'see-through':
@@ -274,11 +285,15 @@ def handle_only_action_left(move, hand, top_card):
             move.update({'reason': 'Only Action cards left and no See-Through on hand -> Reboot.'})
             return move
 
-        if card['type'] == 'joker' and top_card['value'] == 1:
+        if card['type'] == 'joker' and top_card['value'] is not None and top_card['value'] <= count_joker_cards(hand):
             move['type'] = 'put'
-            move.update({'card1': card})
+            move.update({f'card{i + 1}': get_joker(hand) for i in range(top_card['value'])})
             move.update({'reason': 'Only Action cards left and no See-Through or Reboot on hand -> Joker.'})
             return move
+
+        if card['type'] == 'joker' and top_card['value'] is None and not check_same_color_hand_field(hand, top_card):
+            move['type'] = 'put'
+            move.update({f'card1': get_joker(hand)})
 
     return move
 
@@ -382,7 +397,7 @@ def handle_see_through(move, last_topCard, hand):
     :return: built move
     """
     if last_topCard['type'] == 'number':
-        move = build(move, last_topCard, hand)
+        move = build(move, last_topCard, hand, last_topCard)
 
     if last_topCard['type'] == 'reboot' or last_topCard['type'] == 'joker':
         move = handle_reboot_and_joker(move, hand)
@@ -444,9 +459,10 @@ def handle_reboot_and_joker(move, hand):
 
 # Example hand
 # handTest = [
-#     {"type": "number", "color": "green", "value": 2},
-#     {"type": "number", "color": "yellow", "value": 2},
-#     {"type": "number", "color": "red-green", "value": 1},
+#     {"type": "number", "color": "red", "value": 2},
+#     # {"type": "number", "color": "green", "value": 1},
+#     {"type": "reboot", "color": "multi", "value": None},
+#     #{"type": "joker", "color": "multi", "value": 1},
 #     # {"type": "number", "color": "blue-green", "value": 1},
 #     # {"type": "number", "color": "yellow", "value": 3},
 #     # {"type": "number", "color": "red", "value": 3},
@@ -454,7 +470,7 @@ def handle_reboot_and_joker(move, hand):
 #     # {"type": "see-through", "color": "red", "value": None},
 # ]
 #
-# top_cardTest = {"type": "see-through", "color": "red", "value": None}
+# top_cardTest = {"type": "number", "color": "green", "value": 2}
 # last_topCardTest = {"type": "see-through", "color": "blue", "value": None}
 # print_top_card_formatted(top_cardTest)
 # moveTest = ai_player_build_move(handTest, top_cardTest, last_topCardTest, None)

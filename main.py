@@ -1,5 +1,6 @@
 from events import *
 import time
+from format import *
 
 
 def tournament_menu():
@@ -34,12 +35,12 @@ def tournament_menu():
 
         # Start a tournament
         elif choice == "4":
-            if start_tournament():
-                break
+            start_tournament()
 
         elif choice == "5":
             sio.disconnect()
             break
+
         else:
             print("Invalid input.")
 

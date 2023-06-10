@@ -4,7 +4,6 @@ import requests
 import socketio
 import threading
 import aiplayer as ai
-from main import tournament_menu
 from format import *
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
@@ -130,7 +129,6 @@ def tournament_info(data, _):
 
         if (data['status']) == "FINISHED":
             tournament_started = False
-            tournament_menu()
 
         if (data['status']) == "IN_PROGRESS":
             tournament_started = True
@@ -259,8 +257,8 @@ def join_tournament(tournament_id):
     """
     response = sio.call("tournament:join", tournament_id)
     print(f"\n{Color.GREEN_BOLD}TOURNAMENT JOINED{Color.RESET}"
-          if response['success'] else f"{Color.RED_BOLD}{response['error']['message']}"
-                                      f"{Color.RESET}")
+          if response['success'] else f"\n{Color.RED_BOLD}{response['error']['message']}"
+                                      f"{Color.RESET}\n")
 
 
 # tournament:leave

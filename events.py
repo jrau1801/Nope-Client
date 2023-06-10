@@ -35,7 +35,6 @@ def login(name, password):
 
     # Try to get Access-Token
     try:
-        print(response.json()['accessToken'])
         player = response.json()['user']
         global player_id
         player_id = (player['id'])

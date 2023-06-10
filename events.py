@@ -129,6 +129,7 @@ def tournament_info(data, _):
 
         if (data['status']) == "FINISHED":
             tournament_started = False
+            print_menu()
 
         if (data['status']) == "IN_PROGRESS":
             tournament_started = True

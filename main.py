@@ -11,11 +11,8 @@ def tournament_menu():
     while True:
         # Wait for server
         time.sleep(0.5)
-        print(f"{Color.BLUE_BOLD}[1] Create Tournament\n"
-              "[2] Join Tournament\n"
-              "[3] Leave Tournament\n"
-              "[4] Start Tournament\n"
-              f"[5] Disconnect: {Color.RESET}")
+
+        print_menu()
 
         choice = input(f"{Color.BLUE_BACKGROUND_BRIGHT} - {Color.BLACK_BOLD}Choose:{Color.RESET} ")
 

@@ -36,6 +36,14 @@ def print_top_card_formatted(top_card, prefix=""):
         f"{Color.RESET}")
 
 
+def print_menu():
+    print(f"{Color.BLUE_BOLD}[1] Create Tournament\n"
+          "[2] Join Tournament\n"
+          "[3] Leave Tournament\n"
+          "[4] Start Tournament\n"
+          f"[5] Disconnect: {Color.RESET}")
+
+
 # ANSI escape codes for text colors and formatting
 class Color:
     """

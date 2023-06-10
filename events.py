@@ -196,7 +196,7 @@ def make_move(data):
     with lock:
         global topCard, hand
         print("\n")
-        move = ai.ai_player_build_move(hand, topCard, last_topCard, last_move, current_player)
+        move = ai.ai_player_build_move(hand, topCard, last_topCard, last_move)
         time.sleep(0.5)
         return move
 

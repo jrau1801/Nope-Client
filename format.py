@@ -4,7 +4,7 @@ def print_move_formatted(move):
     :param move: move to print
     :return: returns nothing
     """
-    print(f"{Color.GREEN_BACKGROUND} - {Color.BLACK_BOLD} MOVE: {Color.RESET}")
+    print(f"\n{Color.GREEN_BACKGROUND} - {Color.BLACK_BOLD} MOVE: {Color.RESET}")
     for key, value in move.items():
         if isinstance(value, dict):
             value = ' : '.join(str(v) for v in value.values())

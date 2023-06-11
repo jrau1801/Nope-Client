@@ -3,13 +3,25 @@ from PyQt5.QtWidgets import QApplication, QWidget, QTextEdit, QVBoxLayout, QPush
 
 
 class MainMenu(QWidget):
+    """
+    !!!UNFINISHED!!!
+    Graphical User Interface for the main menu
+    !!!UNFINISHED!!!
+    """
     def __init__(self):
+        """
+        Initializes window and components
+        """
         super().__init__()
         self.disconnect_button = None
         self.textarea = None
         self.initUI()
 
     def initUI(self):
+        """
+        Adds components to window
+        :return: nothing
+        """
         # Create a QTextEdit widget for the textarea and set it as non-editable
         self.textarea = QTextEdit()
         self.textarea.setReadOnly(True)
@@ -31,13 +43,25 @@ class MainMenu(QWidget):
         self.show()
 
     def disconnect(self):
-        # Perform actions when the disconnect button is clicked
+        """
+        Disconnects from server
+        :return:
+        """
         self.close()
 
     def append_text(self, text):
+        """
+        Adds text to textarea
+        :param text: text to add
+        :return: nothing
+        """
         self.textarea.append(text)
 
     def clear_text(self):
+        """
+        Clears the text from textarea
+        :return: nothing
+        """
         self.textarea.clear()
 
 

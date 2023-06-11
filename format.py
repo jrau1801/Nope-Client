@@ -14,6 +14,7 @@ def print_move_formatted(move):
 def print_hand_formatted(hand, opp_hand_size):
     """
     Prints a formatted hand for clearer output
+    :param opp_hand_size: number of cards opponent has
     :param hand: hand to print
     :return: returns nothing
     """

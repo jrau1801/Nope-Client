@@ -129,17 +129,15 @@ def tournament_info(data, _):
         global tournament_started, access_token
         print("\n")
         print("TOURNAMENT INFO: ")
-        print(data['message'])
-        print(data['status'])
-
+        print(f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}{data['message']}{Color.RESET}\n"
+              f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}{data['status']}.{Color.RESET}")
+        print("-" * 20)
         if (data['status']) == "FINISHED":
             tournament_started = False
             print_menu()
 
         if (data['status']) == "IN_PROGRESS":
             tournament_started = True
-
-        print("-" * 20)
 
 
 @sio.on("match:info")
@@ -151,11 +149,10 @@ def match_info(data, _):
     :return: nothing
     """
     with lock:
-        print("\n")
         print("MATCH INFO: ")
-        print(f"{data['message']}\n")
-
+        print(f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}{data['message']}.{Color.RESET}")
         print("-" * 20)
+        print("\n")
 
 
 @sio.on("list:tournaments")
@@ -242,8 +239,10 @@ def game_status(data, _):
     :return: nothing
     """
     time.sleep(0.5)
-    print(data['message'])
-    print(f"WINNER: {data['winner']['id']} : {data['winner']['username']} : {data['winner']['points']}")
+    print(f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}{data['message']}.{Color.RESET}\n"
+          f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}WINNER: {data['winner']['id']} : "
+          f"{data['winner']['username']} : "
+          f"{data['winner']['points']}.{Color.RESET}")
 
 
 # Client -> Server

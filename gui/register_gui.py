@@ -1,16 +1,29 @@
-import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QCheckBox
 from events import registration
 
 
 class RegistrationForm(QWidget):
+    """
+    Graphical User Interface for registration
+    """
     def __init__(self, login_form):
+        """
+        Initializes window and components
+        """
         super().__init__()
+        self.first_name_entry = None
+        self.last_name_entry = None
+        self.username_entry = None
+        self.password_entry = None
+        self.show_password_check = None
         self.login_form = login_form
         self.initUI()
 
     def initUI(self):
-        # Create first name label and entry
+        """
+        Adds components to window
+        :return: nothing
+        """
         first_name_label = QLabel('First Name:')
         self.first_name_entry = QLineEdit()
 
@@ -82,12 +95,21 @@ class RegistrationForm(QWidget):
         self.show()
 
     def show_password(self, state):
+        """
+        Show password toggle
+        :param state: shown or not shown
+        :return: nothing
+        """
         if state == 2:
             self.password_entry.setEchoMode(QLineEdit.Normal)
         else:
             self.password_entry.setEchoMode(QLineEdit.Password)
 
     def handle_registration(self):
+        """
+        Handles the registration if the button is clicked
+        :return: nothing
+        """
         # Get the values entered in the registration form
         first_name = self.first_name_entry.text()
         last_name = self.last_name_entry.text()
@@ -100,5 +122,9 @@ class RegistrationForm(QWidget):
             print("Registration Failed")
 
     def go_back(self):
+        """
+        Go back to Login-form
+        :return: nothing
+        """
         self.close()
         self.login_form.show()

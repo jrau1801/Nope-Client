@@ -11,13 +11,14 @@ def print_move_formatted(move):
         print(f'{Color.GREEN_BACKGROUND} + {Color.BLACK_BOLD} {key}: {value} {Color.RESET}')
 
 
-def print_hand_formatted(hand):
+def print_hand_formatted(hand, opp_hand_size):
     """
     Prints a formatted hand for clearer output
     :param hand: hand to print
     :return: returns nothing
     """
-    print(f"\n{Color.BLUE_BACKGROUND_BRIGHT} - {Color.BLACK_BOLD} YOUR HAND: {Color.RESET}")
+    print(f"\n{Color.BLUE_BACKGROUND_BRIGHT} - {Color.BLACK_BOLD} YOUR HAND: {Color.RESET}\t\t\t\t\t\t"
+          f"{Color.BLUE_BACKGROUND_BRIGHT} - {Color.BLACK_BOLD} Opponent Cards: {opp_hand_size} {Color.RESET}")
     for card in hand:
         print(f"{Color.BLUE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD} {card['type']} : {card['color']} : {card['value']} "
               f"{Color.RESET}")

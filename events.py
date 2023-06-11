@@ -17,6 +17,7 @@ topCard = None
 last_topCard = None
 last_move = None
 current_player = None
+opp_hand_size = None
 tournament_started = False
 
 lock = threading.Lock()
@@ -210,16 +211,20 @@ def game_state(data, _):
     :return: nothing
     """
     with lock:
-        global topCard, hand, last_move, current_player, last_topCard, player_id
+        global topCard, hand, last_move, current_player, last_topCard, player_id, opp_hand_size
         topCard = data['topCard']
         last_topCard = data['lastTopCard']
         hand = data['hand']
         last_move = data['lastMove']
         current_player = data['currentPlayer']
 
+        for player in data['players']:
+            if player_id != player['id']:
+                opp_hand_size = player['handSize']
+
         if player_id == current_player['id']:
             print(f"\nIts Your Turn!")
-            print_hand_formatted(hand)
+            print_hand_formatted(hand, opp_hand_size)
             print_top_card_formatted(topCard)
 
 

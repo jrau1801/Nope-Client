@@ -18,8 +18,11 @@ def tournament_menu():
 
         # Create a tournament
         if choice == "1":
-            num_matches = int(input("Number of matches: "))
-            create_tournament(num_matches)
+            try:
+                num_matches = int(input("Number of matches: "))
+                create_tournament(num_matches)
+            except ValueError:
+                print("Has to be a number!")
 
         # Join a tournament
         elif choice == "2":
@@ -39,7 +42,7 @@ def tournament_menu():
             break
 
         else:
-            print("Invalid input.")
+            print("Invalid input.\n")
 
 
 def login_menu():

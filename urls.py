@@ -90,69 +90,70 @@ class PlayerAPI:
 
 api = PlayerAPI()
 
-# Prompt the user for input
-while True:
+def menu():
+    """
+    Menu for user input to get urls
+    :return: nothing
+    """
+    while True:
+        # Prompt the user for input
+        generated_url = ""
+        spielername = input("Enter the player's name: ")
+        url_choice = input("\nEnter the number corresponding to the URL you want to generate:\n"
+                           "1. Player Information\n"
+                           "2. Player Statistics\n"
+                           "3. Player Tournaments\n"
+                           "4. Tournaments Won by Player\n"
+                           "5. Tournaments Hosted by Player\n"
+                           "6. Player Tournament Statistics\n"
+                           "7. Matches Played by Player\n"
+                           "8. Matches Won by Player\n"
+                           "9. Games Played by Player\n"
+                           "10. Games Won by Player\n"
+                           "11. Tournament Information\n"
+                           "12. Tournament Statistics\n"
+                           "13. Match Information\n"
+                           "14. Game Information\n"
+                           "15. API Documentation\n"
+                           "Enter your choice: ")
 
-    api = PlayerAPI()
+        # Generate the desired URL based on the user's choice
+        if url_choice == "1":
+            generated_url = api.get_player_url(spielername)
+        elif url_choice == "2":
+            generated_url = api.get_player_stats_url(spielername)
+        elif url_choice == "3":
+            generated_url = api.get_player_tournament_url(spielername)
+        elif url_choice == "4":
+            generated_url = api.get_player_tournaments_won_url(spielername)
+        elif url_choice == "5":
+            generated_url = api.get_player_tournaments_hosted_url(spielername)
+        elif url_choice == "6":
+            generated_url = api.get_player_tournaments_stats_url(spielername)
+        elif url_choice == "7":
+            generated_url = api.get_player_matches_url(spielername)
+        elif url_choice == "8":
+            generated_url = api.get_player_matches_won_url(spielername)
+        elif url_choice == "9":
+            generated_url = api.get_player_games_url(spielername)
+        elif url_choice == "10":
+            generated_url = api.get_player_games_won_url(spielername)
+        elif url_choice == "11":
+            turnier_id = input("Enter the tournament ID: ")
+            generated_url = api.get_tournament_url(turnier_id)
+        elif url_choice == "12":
+            turnier_id = input("Enter the tournament ID: ")
+            generated_url = api.get_tournament_stats_url(turnier_id)
+        elif url_choice == "13":
+            match_id = input("Enter the match ID: ")
+            generated_url = api.get_match_url(match_id)
+        elif url_choice == "14":
+            game_id = input("Enter the game ID: ")
+            generated_url = api.get_game_url(game_id)
+        elif url_choice == "15":
+            generated_url = api.get_docs_url()
+        else:
+            print("Invalid choice!")
 
-    # Prompt the user for input
-    generated_url = ""
-    spielername = input("Enter the player's name: ")
-    url_choice = input("\nEnter the number corresponding to the URL you want to generate:\n"
-                       "1. Player Information\n"
-                       "2. Player Statistics\n"
-                       "3. Player Tournaments\n"
-                       "4. Tournaments Won by Player\n"
-                       "5. Tournaments Hosted by Player\n"
-                       "6. Player Tournament Statistics\n"
-                       "7. Matches Played by Player\n"
-                       "8. Matches Won by Player\n"
-                       "9. Games Played by Player\n"
-                       "10. Games Won by Player\n"
-                       "11. Tournament Information\n"
-                       "12. Tournament Statistics\n"
-                       "13. Match Information\n"
-                       "14. Game Information\n"
-                       "15. API Documentation\n"
-                       "Enter your choice: ")
-
-    # Generate the desired URL based on the user's choice
-    if url_choice == "1":
-        generated_url = api.get_player_url(spielername)
-    elif url_choice == "2":
-        generated_url = api.get_player_stats_url(spielername)
-    elif url_choice == "3":
-        generated_url = api.get_player_tournament_url(spielername)
-    elif url_choice == "4":
-        generated_url = api.get_player_tournaments_won_url(spielername)
-    elif url_choice == "5":
-        generated_url = api.get_player_tournaments_hosted_url(spielername)
-    elif url_choice == "6":
-        generated_url = api.get_player_tournaments_stats_url(spielername)
-    elif url_choice == "7":
-        generated_url = api.get_player_matches_url(spielername)
-    elif url_choice == "8":
-        generated_url = api.get_player_matches_won_url(spielername)
-    elif url_choice == "9":
-        generated_url = api.get_player_games_url(spielername)
-    elif url_choice == "10":
-        generated_url = api.get_player_games_won_url(spielername)
-    elif url_choice == "11":
-        turnier_id = input("Enter the tournament ID: ")
-        generated_url = api.get_tournament_url(turnier_id)
-    elif url_choice == "12":
-        turnier_id = input("Enter the tournament ID: ")
-        generated_url = api.get_tournament_stats_url(turnier_id)
-    elif url_choice == "13":
-        match_id = input("Enter the match ID: ")
-        generated_url = api.get_match_url(match_id)
-    elif url_choice == "14":
-        game_id = input("Enter the game ID: ")
-        generated_url = api.get_game_url(game_id)
-    elif url_choice == "15":
-        generated_url = api.get_docs_url()
-    else:
-        print("Invalid choice!")
-
-    # Print the generated URL
-    print(f"\nGenerated URL: {generated_url}\n")
+        # Print the generated URL
+        print(f"\nGenerated URL: {generated_url}\n")

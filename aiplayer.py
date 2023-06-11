@@ -51,6 +51,7 @@ def ai_player_build_move(hand, top_card, last_topCard, last_move):
 def build(move, topCard, hand, last_top_card):
     """
     Builds a move if the top card is a number card
+    :param last_top_card: top-card under see-through
     :param move: empty move
     :param topCard: current top card
     :param hand: current player hand
@@ -164,6 +165,11 @@ def filter_all_matching(all_matching_cards, required_count):
 
 
 def get_joker(hand):
+    """
+    Gets a joker from hand
+    :param hand: player hand
+    :return: joker card
+    """
     for card in hand:
         if card['type'] == 'joker':
             return card

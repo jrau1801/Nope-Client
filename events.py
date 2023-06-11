@@ -255,8 +255,9 @@ def create_tournament(num_best_of_matches):
     :return: nothing
     """
     response = sio.call("tournament:create", num_best_of_matches)
-    print(f"\n{Color.GREEN_BOLD}TOURNAMENT CREATED" if response['success'] else f"ERROR AT TOURNAMENT CREATION"
-                                                                                f"{Color.RESET}")
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT CREATED{Color.RESET}"
+          if response['success'] else f"\n{Color.RED_BOLD}{response['error']['message']}"
+                                      f"{Color.RESET}\n")
 
 
 # tournament:join

@@ -48,6 +48,7 @@
 <dt class="sig sig-object py" id="aiplayer.build">
 <span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">move</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_top_card</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.build" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds a move if the top card is a number card
+:param last_top_card: top-card under see-through
 :param move: empty move
 :param topCard: current top card
 :param hand: current player hand
@@ -128,7 +129,10 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="aiplayer.get_joker">
 <span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">get_joker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.get_joker" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gets a joker from hand
+:param hand: player hand
+:return: joker card</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aiplayer.get_reboot">

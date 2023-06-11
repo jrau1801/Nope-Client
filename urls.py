@@ -25,6 +25,8 @@ class PlayerAPI:
 
         self._game_url = 'https://nope-server.azurewebsites.net/api/game/{game_id}'
 
+        self._docs_url = "https://nope-server.azurewebsites.net/docs/"
+
     def get_player_url(self, spielername):
         """Get the URL for a player's information."""
         return self._player_url.format(spielername=spielername)
@@ -80,6 +82,10 @@ class PlayerAPI:
     def get_game_url(self, game_id):
         """Get the URL for a game's information."""
         return self._game_url.format(game_id=game_id)
+
+    def get_docs_url(self):
+        """Get the URL for the Rest-API Documentation"""
+        return self._docs_url
 
 
 # Usage example:

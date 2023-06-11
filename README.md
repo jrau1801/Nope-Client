@@ -22,7 +22,7 @@ Learning Journal:
 <!-- About the Project -->
 ## About the Project
 The browser documentation of the code can be found at:
-../build/index.html
+``../build/index.html``
 
 The documentation was created using Sphinx: [Sphinx](https://www.sphinx-doc.org/en/master/)
 
@@ -169,4 +169,21 @@ The landing page looks like this:
 ```
 Every method and class has been documented.
 This is the place to go if you want to understand the code better.
+```
+
+```
+To run Sphinx you'll need the following command.
+And changes to conf.py are needed sometimes, when working with different directories
+Here we added syspaths for the directories we are workning in.
+```
+
+<div align="center"> 
+  <img src="assets/conf.png" alt="screenshot" />
+</div>
+
+```bash
+sphinx-build -b html . build
+```
+```
+"html" is the format, "." is the source dir and "build" is the target dir
 ```

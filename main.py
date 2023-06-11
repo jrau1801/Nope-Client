@@ -18,13 +18,16 @@ def tournament_menu():
 
         # Create a tournament
         if choice == "1":
-            num_matches = int(input("Number of matches: "))
-            create_tournament(num_matches)
+            try:
+                num_matches = int(input("Number of matches: "))
+                create_tournament(num_matches)
+            except ValueError:
+                print("Has to be a number!")
 
         # Join a tournament
         elif choice == "2":
-            tournament_id = input("Tournament-ID: ")
-            join_tournament(tournament_id)
+            tournament_idx = int(input("Tournament-Index: "))
+            join_tournament(format.formatted_data[tournament_idx][0])
 
         # Leave a tournament
         elif choice == "3":
@@ -39,7 +42,7 @@ def tournament_menu():
             break
 
         else:
-            print("Invalid input.")
+            print("Invalid input.\n")
 
 
 def login_menu():

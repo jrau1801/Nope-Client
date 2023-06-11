@@ -4,6 +4,7 @@ import requests
 import socketio
 import threading
 import aiplayer as ai
+import format
 from format import *
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
@@ -34,7 +35,7 @@ def login(name, password):
     response = requests.post(login_url, json=data)
 
     if response.status_code == 400 or response.status_code == 401:
-        return
+        return False
     # Try to get Access-Token
     try:
         player = response.json()['user']
@@ -49,7 +50,6 @@ def login(name, password):
 
     # Connect to server
     sio.connect("https://nope-server.azurewebsites.net", namespaces='/', auth={'token': access_token})
-
     return True
 
 
@@ -71,7 +71,6 @@ def registration(name, password, firstname, lastname):
         return True
 
     return False
-
 
 
 # Server -> Client
@@ -131,17 +130,15 @@ def tournament_info(data, _):
         global tournament_started, access_token
         print("\n")
         print("TOURNAMENT INFO: ")
-        print(data['message'])
-        print(data['status'])
-
+        print(f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}{data['message']}{Color.RESET}\n"
+              f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}{data['status']}.{Color.RESET}")
+        print("-" * 20)
         if (data['status']) == "FINISHED":
             tournament_started = False
             print_menu()
 
         if (data['status']) == "IN_PROGRESS":
             tournament_started = True
-
-        print("-" * 20)
 
 
 @sio.on("match:info")
@@ -153,11 +150,10 @@ def match_info(data, _):
     :return: nothing
     """
     with lock:
-        print("\n")
         print("MATCH INFO: ")
-        print(data['message'])
-
+        print(f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}{data['message']}.{Color.RESET}")
         print("-" * 20)
+        print("\n")
 
 
 @sio.on("list:tournaments")
@@ -172,7 +168,9 @@ def list_tournaments(data, _):
 
         if not tournament_started:
 
-            print(f"\n{Color.WHITE_BRIGHT}")
+            format.formatted_data = {}
+            format.counter = 0
+
             # Lists tournament info for all tournaments
             content = []
             row_content = []
@@ -189,8 +187,13 @@ def list_tournaments(data, _):
                 row_content = []
 
             for entry in content:
-                print(entry)
+                format.add_entry(entry)
+
             print(f"\n{Color.RESET}")
+
+            for key, value in format.formatted_data.items():
+                print(f"{Color.WHITE_BRIGHT} + {key}: {value}{Color.RESET}")
+            print("\n")
 
 
 @sio.on("game:makeMove")
@@ -202,7 +205,6 @@ def make_move(data):
     """
     with lock:
         global topCard, hand
-        print("\n")
         move = ai.ai_player_build_move(hand, topCard, last_topCard, last_move)
         time.sleep(0.5)
         return move
@@ -243,8 +245,10 @@ def game_status(data, _):
     :return: nothing
     """
     time.sleep(0.5)
-    print(data['message'])
-    print(f"WINNER: {data['winner']['id']} : {data['winner']['username']} : {data['winner']['points']}")
+    print(f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}{data['message']}.{Color.RESET}\n"
+          f"{Color.WHITE_BACKGROUND_BRIGHT} + {Color.BLACK_BOLD}WINNER: {data['winner']['id']} : "
+          f"{data['winner']['username']} : "
+          f"{data['winner']['points']}.{Color.RESET}")
 
 
 # Client -> Server
@@ -257,8 +261,9 @@ def create_tournament(num_best_of_matches):
     :return: nothing
     """
     response = sio.call("tournament:create", num_best_of_matches)
-    print(f"\n{Color.GREEN_BOLD}TOURNAMENT CREATED" if response['success'] else f"ERROR AT TOURNAMENT CREATION"
-                                                                                f"{Color.RESET}")
+    print(f"\n{Color.GREEN_BOLD}TOURNAMENT CREATED{Color.RESET}"
+          if response['success'] else f"\n{Color.RED_BOLD}{response['error']['message']}"
+                                      f"{Color.RESET}\n")
 
 
 # tournament:join

@@ -14,6 +14,7 @@ def print_move_formatted(move):
 def print_hand_formatted(hand, opp_hand_size):
     """
     Prints a formatted hand for clearer output
+    :param opp_hand_size: number of cards opponent has
     :param hand: hand to print
     :return: returns nothing
     """
@@ -43,6 +44,16 @@ def print_menu():
           "[3] Leave Tournament\n"
           "[4] Start Tournament\n"
           f"[5] Disconnect: {Color.RESET}")
+
+
+def add_entry(entry):
+    global counter
+    formatted_data[counter] = entry
+    counter += 1
+
+
+formatted_data = {}
+counter = 0
 
 
 # ANSI escape codes for text colors and formatting

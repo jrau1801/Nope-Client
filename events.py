@@ -33,6 +33,8 @@ def login(name, password):
     data = {"username": name, "password": password}
     response = requests.post(login_url, json=data)
 
+    if response.status_code == 400 or response.status_code == 401:
+        return
     # Try to get Access-Token
     try:
         player = response.json()['user']
@@ -65,7 +67,11 @@ def registration(name, password, firstname, lastname):
     # Register on server
     response = requests.post(register_url, json=data)
 
-    print(response)
+    if response.status_code == 201:
+        return True
+
+    return False
+
 
 
 # Server -> Client

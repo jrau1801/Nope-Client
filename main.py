@@ -63,6 +63,8 @@ def login_menu():
                 print("Login successful!")
                 tournament_menu()
                 break
+            else:
+                print("Login failed")
 
         # Register a new user
         elif choice == "2":
@@ -72,9 +74,10 @@ def login_menu():
             firstname = input("Firstname: ")
             lastname = input("Lastname: ")
 
-            registration(username, password, firstname, lastname)
-
-            print("Sie haben sich erfolgreich registriert!")
+            if registration(username, password, firstname, lastname):
+                print("Registration Successful")
+            else:
+                print("Registration Failed")
 
         else:
             print("Invalid input.")

@@ -1,12 +1,16 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QCheckBox
-from events import *
 from main import *
+from register_gui import RegistrationForm
 
 
 class LoginForm(QWidget):
     def __init__(self):
         super().__init__()
+        self.show_password_check = None
+        self.password_entry = None
+        self.username_entry = None
+        self.registration_form = None
         self.initUI()
 
     def initUI(self):
@@ -25,7 +29,11 @@ class LoginForm(QWidget):
 
         # Create login button
         login_button = QPushButton('Login')
-        login_button.clicked.connect(lambda: login(self.username_entry.text(), self.password_entry.text()))
+        login_button.clicked.connect(self.handle_login)
+
+        # Create registration button
+        registration_button = QPushButton('Register')
+        registration_button.clicked.connect(self.open_registration_form)
 
         # Add all widgets to layout
         hbox1 = QHBoxLayout()
@@ -41,6 +49,7 @@ class LoginForm(QWidget):
 
         hbox4 = QHBoxLayout()
         hbox4.addWidget(login_button)
+        hbox4.addWidget(registration_button)
 
         vbox = QVBoxLayout()
         vbox.addLayout(hbox1)
@@ -60,6 +69,24 @@ class LoginForm(QWidget):
             self.password_entry.setEchoMode(QLineEdit.Normal)
         else:
             self.password_entry.setEchoMode(QLineEdit.Password)
+
+    def handle_login(self):
+        login_successful = login(self.username_entry.text(), self.password_entry.text())
+
+        if login_successful:
+            # Perform actions for successful login
+            self.close()  # Close the login window
+            tournament_menu()
+        else:
+            # Perform actions for failed login
+            print("Login failed")
+
+    def open_registration_form(self):
+        self.close()
+        self.username_entry.clear()
+        self.username_entry.clear()
+        self.registration_form = RegistrationForm(self)
+        self.registration_form.show()
 
 
 if __name__ == '__main__':

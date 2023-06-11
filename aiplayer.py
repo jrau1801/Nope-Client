@@ -73,7 +73,7 @@ def build(move, topCard, hand, last_top_card):
     # Searching for matching cards in hand
     for required_color in required_colors:
         for card in hand:
-            if card['type'] == 'number' and any(color in card['color'] for color in required_color.split('-')):
+            if card['type'] == 'number' and any(color in card['color'] for color in required_color.split("-")):
                 if len(matching_cards) < required_count:
                     matching_cards.append(card)
 
@@ -465,19 +465,19 @@ def handle_reboot_and_joker(move, hand):
 
 # Example hand
 # handTest = [
-#     {"type": "number", "color": "red", "value": 2},
-#     # {"type": "number", "color": "green", "value": 1},
+#     {"type": "number", "color": "red-green", "value": 2},
+#     {"type": "number", "color": "green", "value": 1},
 #     {"type": "reboot", "color": "multi", "value": None},
-#     #{"type": "joker", "color": "multi", "value": 1},
-#     # {"type": "number", "color": "blue-green", "value": 1},
-#     # {"type": "number", "color": "yellow", "value": 3},
-#     # {"type": "number", "color": "red", "value": 3},
-#     # {"type": "reboot", "color": "multi", "value": None},
-#     # {"type": "see-through", "color": "red", "value": None},
+#     {"type": "joker", "color": "multi", "value": 1},
+#     {"type": "number", "color": "blue-green", "value": 1},
+#     {"type": "number", "color": "yellow", "value": 3},
+#     {"type": "number", "color": "red", "value": 3},
+#     {"type": "reboot", "color": "multi", "value": None},
+#     {"type": "see-through", "color": "red", "value": None},
 # ]
 #
-# top_cardTest = {"type": "number", "color": "green", "value": 2}
+# top_cardTest = {"type": "number", "color": "green-red", "value": 2}
 # last_topCardTest = {"type": "see-through", "color": "blue", "value": None}
 # print_top_card_formatted(top_cardTest)
 # moveTest = ai_player_build_move(handTest, top_cardTest, last_topCardTest, None)
-# print_hand_formatted(handTest)
+# print_hand_formatted(handTest, 5)

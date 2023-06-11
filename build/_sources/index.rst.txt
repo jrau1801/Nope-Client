@@ -15,6 +15,7 @@ Welcome to the Nope-Client Documentation!
    rst/urls
    rst/format
    rst/login_gui
+   rst/register_gui
 
 Indices and Tables
 ------------------

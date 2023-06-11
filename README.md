@@ -9,13 +9,13 @@ Learning Journal:
 # Table of Contents
 
 - [About the Project](#about-the-project)
-  * [Screenshots](#screenshots)
   * [Tech Stack](#tech-stack)
   * [Features](#features)
 - [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Run Locally](#run-locally)
 - [Usage](#usage)
+  * [Screenshots](#screenshots)
 
   
 

@@ -153,7 +153,7 @@ def match_info(data, _):
     with lock:
         print("\n")
         print("MATCH INFO: ")
-        print(data['message'])
+        print(f"{data['message']}\n")
 
         print("-" * 20)
 

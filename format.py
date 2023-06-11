@@ -46,6 +46,16 @@ def print_menu():
           f"[5] Disconnect: {Color.RESET}")
 
 
+def add_entry(entry):
+    global counter
+    formatted_data[counter] = entry
+    counter += 1
+
+
+formatted_data = {}
+counter = 0
+
+
 # ANSI escape codes for text colors and formatting
 class Color:
     """

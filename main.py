@@ -26,8 +26,8 @@ def tournament_menu():
 
         # Join a tournament
         elif choice == "2":
-            tournament_id = input("Tournament-ID: ")
-            join_tournament(tournament_id)
+            tournament_idx = int(input("Tournament-Index: "))
+            join_tournament(format.formatted_data[tournament_idx][0])
 
         # Leave a tournament
         elif choice == "3":

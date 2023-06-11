@@ -4,6 +4,7 @@ import requests
 import socketio
 import threading
 import aiplayer as ai
+import format
 from format import *
 
 login_url = 'https://nope-server.azurewebsites.net/api/auth/login'
@@ -167,7 +168,9 @@ def list_tournaments(data, _):
 
         if not tournament_started:
 
-            print(f"\n{Color.WHITE_BRIGHT}")
+            format.formatted_data = {}
+            format.counter = 0
+
             # Lists tournament info for all tournaments
             content = []
             row_content = []
@@ -184,9 +187,14 @@ def list_tournaments(data, _):
                 row_content = []
 
             for entry in content:
-                print(entry)
+                format.add_entry(entry)
 
             print(f"\n{Color.RESET}")
+
+            for key, value in format.formatted_data.items():
+                print(f"{Color.WHITE_BRIGHT} + {key}: {value}{Color.RESET}")
+            print("\n")
+
 
 
 @sio.on("game:makeMove")

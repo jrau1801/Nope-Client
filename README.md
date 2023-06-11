@@ -123,7 +123,7 @@ Go to the project directory
   Search for either main.py or login_gui.py and run them
 ```
 ```
-  Login or Register and create or a tournament
+  Login or Register and create or join a tournament
 ```
 
 For Rest-API URLs

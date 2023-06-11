@@ -5,7 +5,13 @@ from register_gui import RegistrationForm
 
 
 class LoginForm(QWidget):
+    """
+    Graphical User Interface for logging in
+    """
     def __init__(self):
+        """
+        Initializes window and components
+        """
         super().__init__()
         self.show_password_check = None
         self.password_entry = None
@@ -14,6 +20,10 @@ class LoginForm(QWidget):
         self.initUI()
 
     def initUI(self):
+        """
+        Adds components to window
+        :return: nothing
+        """
         # Create username label and entry
         username_label = QLabel('Username:')
         self.username_entry = QLineEdit()
@@ -65,12 +75,21 @@ class LoginForm(QWidget):
         self.show()
 
     def show_password(self, state):
+        """
+        Show password toggle
+        :param state: shown or not shown
+        :return: nothing
+        """
         if state == 2:
             self.password_entry.setEchoMode(QLineEdit.Normal)
         else:
             self.password_entry.setEchoMode(QLineEdit.Password)
 
     def handle_login(self):
+        """
+        Handles functionality of login-button
+        :return: nothing
+        """
         login_successful = login(self.username_entry.text(), self.password_entry.text())
 
         if login_successful:
@@ -82,6 +101,10 @@ class LoginForm(QWidget):
             print("Login failed")
 
     def open_registration_form(self):
+        """
+        Opens the registration gui if register-button is clicked
+        :return: nothing
+        """
         self.close()
         self.username_entry.clear()
         self.username_entry.clear()

@@ -46,7 +46,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aiplayer.build">
-<span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">move</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.build" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">move</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_top_card</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.build" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds a move if the top card is a number card
 :param move: empty move
 :param topCard: current top card
@@ -126,6 +126,11 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="aiplayer.get_joker">
+<span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">get_joker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.get_joker" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="aiplayer.get_reboot">
 <span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">get_reboot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.get_reboot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets a reboot card from hand
@@ -135,7 +140,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="aiplayer.handle_only_action_left">
-<span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">handle_only_action_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">move</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_card</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.handle_only_action_left" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">aiplayer.</span></span><span class="sig-name descname"><span class="pre">handle_only_action_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">move</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_card</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_top_card</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#aiplayer.handle_only_action_left" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plays the action cards if they’re the only ones left
 :param move: empty move
 :param hand: player hand
@@ -246,6 +251,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.count_joker_cards"><code class="docutils literal notranslate"><span class="pre">count_joker_cards()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.filter_all_matching"><code class="docutils literal notranslate"><span class="pre">filter_all_matching()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.filter_and_weigh"><code class="docutils literal notranslate"><span class="pre">filter_and_weigh()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aiplayer.get_joker"><code class="docutils literal notranslate"><span class="pre">get_joker()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.get_reboot"><code class="docutils literal notranslate"><span class="pre">get_reboot()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.handle_only_action_left"><code class="docutils literal notranslate"><span class="pre">handle_only_action_left()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#aiplayer.handle_reboot_and_joker"><code class="docutils literal notranslate"><span class="pre">handle_reboot_and_joker()</span></code></a></li>

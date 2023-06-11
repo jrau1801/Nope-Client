@@ -34,7 +34,7 @@ def login(name, password):
     response = requests.post(login_url, json=data)
 
     if response.status_code == 400 or response.status_code == 401:
-        return
+        return False
     # Try to get Access-Token
     try:
         player = response.json()['user']
@@ -49,7 +49,6 @@ def login(name, password):
 
     # Connect to server
     sio.connect("https://nope-server.azurewebsites.net", namespaces='/', auth={'token': access_token})
-
     return True
 
 
@@ -71,7 +70,6 @@ def registration(name, password, firstname, lastname):
         return True
 
     return False
-
 
 
 # Server -> Client
@@ -190,6 +188,7 @@ def list_tournaments(data, _):
 
             for entry in content:
                 print(entry)
+
             print(f"\n{Color.RESET}")
 
 

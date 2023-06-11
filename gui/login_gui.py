@@ -1,13 +1,17 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QHBoxLayout, QVBoxLayout, QCheckBox
+
+import events
 from main import *
 from register_gui import RegistrationForm
+from main_menu import MainMenu
 
 
 class LoginForm(QWidget):
     """
     Graphical User Interface for logging in
     """
+
     def __init__(self):
         """
         Initializes window and components
@@ -17,6 +21,7 @@ class LoginForm(QWidget):
         self.password_entry = None
         self.username_entry = None
         self.registration_form = None
+        self.main_menu = None
         self.initUI()
 
     def initUI(self):
@@ -95,10 +100,25 @@ class LoginForm(QWidget):
         if login_successful:
             # Perform actions for successful login
             self.close()  # Close the login window
-            tournament_menu()
+            self.open_main_menu()
         else:
             # Perform actions for failed login
             print("Login failed")
+
+    def open_main_menu(self):
+        """
+        Opens the main menu and starts the tournament_menu() loop in a separate thread
+        :return: nothing
+        """
+        self.close()
+        self.username_entry.clear()
+        self.username_entry.clear()
+        self.main_menu = MainMenu()
+        events.main_menu = self.main_menu
+        self.main_menu.show()
+
+        tournament_menu_thread = threading.Thread(target=tournament_menu)
+        tournament_menu_thread.start()
 
     def open_registration_form(self):
         """

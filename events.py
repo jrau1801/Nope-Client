@@ -196,7 +196,6 @@ def list_tournaments(data, _):
             print("\n")
 
 
-
 @sio.on("game:makeMove")
 def make_move(data):
     """
@@ -206,7 +205,6 @@ def make_move(data):
     """
     with lock:
         global topCard, hand
-        print("\n")
         move = ai.ai_player_build_move(hand, topCard, last_topCard, last_move)
         time.sleep(0.5)
         return move

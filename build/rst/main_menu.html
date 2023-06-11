@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>register_gui module &#8212; Nope-Client 06.06.2023 documentation</title>
+    <title>main_menu module &#8212; Nope-Client 06.06.2023 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -13,8 +13,7 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="main_menu module" href="main_menu.html" />
-    <link rel="prev" title="login_gui module" href="login_gui.html" />
+    <link rel="prev" title="register_gui module" href="register_gui.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -31,38 +30,40 @@
 
           <div class="body" role="main">
             
-  <section id="module-register_gui">
-<span id="register-gui-module"></span><h1>register_gui module<a class="headerlink" href="#module-register_gui" title="Permalink to this heading">¶</a></h1>
+  <section id="module-main_menu">
+<span id="main-menu-module"></span><h1>main_menu module<a class="headerlink" href="#module-main_menu" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="register_gui.RegistrationForm">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">register_gui.</span></span><span class="sig-name descname"><span class="pre">RegistrationForm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">login_form</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#register_gui.RegistrationForm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Graphical User Interface for registration</p>
+<dt class="sig sig-object py" id="main_menu.MainMenu">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main_menu.</span></span><span class="sig-name descname"><span class="pre">MainMenu</span></span><a class="headerlink" href="#main_menu.MainMenu" title="Permalink to this definition">¶</a></dt>
+<dd><p>!!!UNFINISHED!!!
+Graphical User Interface for the main menu
+!!!UNFINISHED!!!</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="register_gui.RegistrationForm.go_back">
-<span class="sig-name descname"><span class="pre">go_back</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#register_gui.RegistrationForm.go_back" title="Permalink to this definition">¶</a></dt>
-<dd><p>Go back to Login-form
+<dt class="sig sig-object py" id="main_menu.MainMenu.append_text">
+<span class="sig-name descname"><span class="pre">append_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_menu.MainMenu.append_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds text to textarea
+:param text: text to add
 :return: nothing</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="register_gui.RegistrationForm.handle_registration">
-<span class="sig-name descname"><span class="pre">handle_registration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#register_gui.RegistrationForm.handle_registration" title="Permalink to this definition">¶</a></dt>
-<dd><p>Handles the registration if the button is clicked
+<dt class="sig sig-object py" id="main_menu.MainMenu.clear_text">
+<span class="sig-name descname"><span class="pre">clear_text</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_menu.MainMenu.clear_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the text from textarea
 :return: nothing</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="register_gui.RegistrationForm.initUI">
-<span class="sig-name descname"><span class="pre">initUI</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#register_gui.RegistrationForm.initUI" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="main_menu.MainMenu.disconnect">
+<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_menu.MainMenu.disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disconnects from server
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="main_menu.MainMenu.initUI">
+<span class="sig-name descname"><span class="pre">initUI</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_menu.MainMenu.initUI" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds components to window
-:return: nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="register_gui.RegistrationForm.show_password">
-<span class="sig-name descname"><span class="pre">show_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#register_gui.RegistrationForm.show_password" title="Permalink to this definition">¶</a></dt>
-<dd><p>Show password toggle
-:param state: shown or not shown
 :return: nothing</p>
 </dd></dl>
 
@@ -95,19 +96,18 @@
 <li class="toctree-l1"><a class="reference internal" href="urls.html">urls module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="format.html">format module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="login_gui.html">login_gui module</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">register_gui module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#register_gui.RegistrationForm"><code class="docutils literal notranslate"><span class="pre">RegistrationForm</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="register_gui.html">register_gui module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">main_menu module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main_menu.MainMenu"><code class="docutils literal notranslate"><span class="pre">MainMenu</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="main_menu.html">main_menu module</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="login_gui.html" title="previous chapter">login_gui module</a></li>
-      <li>Next: <a href="main_menu.html" title="next chapter">main_menu module</a></li>
+      <li>Previous: <a href="register_gui.html" title="previous chapter">register_gui module</a></li>
   </ul></li>
 </ul>
 </div>
@@ -141,7 +141,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
-      <a href="../_sources/rst/register_gui.rst.txt"
+      <a href="../_sources/rst/main_menu.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

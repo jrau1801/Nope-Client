@@ -121,38 +121,56 @@ def menu():
         # Generate the desired URL based on the user's choice
         if url_choice == "1":
             generated_url = api.get_player_url(spielername)
+
         elif url_choice == "2":
             generated_url = api.get_player_stats_url(spielername)
+
         elif url_choice == "3":
             generated_url = api.get_player_tournament_url(spielername)
+
         elif url_choice == "4":
             generated_url = api.get_player_tournaments_won_url(spielername)
+
         elif url_choice == "5":
             generated_url = api.get_player_tournaments_hosted_url(spielername)
+
         elif url_choice == "6":
             generated_url = api.get_player_tournaments_stats_url(spielername)
+
         elif url_choice == "7":
             generated_url = api.get_player_matches_url(spielername)
+
         elif url_choice == "8":
             generated_url = api.get_player_matches_won_url(spielername)
+
         elif url_choice == "9":
             generated_url = api.get_player_games_url(spielername)
+
         elif url_choice == "10":
             generated_url = api.get_player_games_won_url(spielername)
+
         elif url_choice == "11":
             turnier_id = input("Enter the tournament ID: ")
             generated_url = api.get_tournament_url(turnier_id)
+
         elif url_choice == "12":
             turnier_id = input("Enter the tournament ID: ")
             generated_url = api.get_tournament_stats_url(turnier_id)
+
         elif url_choice == "13":
             match_id = input("Enter the match ID: ")
             generated_url = api.get_match_url(match_id)
+
         elif url_choice == "14":
             game_id = input("Enter the game ID: ")
             generated_url = api.get_game_url(game_id)
+
         elif url_choice == "15":
             generated_url = api.get_docs_url()
+
+        elif url_choice == "e":
+            break
+
         else:
             print("Invalid choice!")
 

@@ -90,6 +90,7 @@ class PlayerAPI:
 
 api = PlayerAPI()
 
+
 def menu():
     """
     Menu for user input to get urls

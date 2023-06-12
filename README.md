@@ -21,6 +21,38 @@ Learning Journal:
 
 <!-- About the Project -->
 ## About the Project
+
+### Architecture
+<div align="center"> 
+  <img src="assets/architecture.png" alt="screenshot" />
+</div>
+
+### Project Structure
+
+```txt
+.
+│ 
+├── assets                  Assets
+├── build                   Builds website for Sphinxdoc
+│    ├── _static            CSS and JS Files   
+│    └── rst                HTML Files
+├── gui
+│    ├── login_gui.py       Login GUI
+│    ├── main_menu.py       Main menu GUI
+│    └── register_gui.py    Register GUI
+├── rst
+│    ├── aiplayer.rst       reStructuredText Files Sphinxdoc
+│    └── ...
+└── .py files               All scripts
+    ├── aiplayer.py         AI-Player
+    ├── conf.py             config for Sphinxdoc
+    ├── events.py           SocketIO events
+    ├── format.py           Better output
+    ├── logger.py           Logging
+    ├── main.py             Main menu
+    └── urls.py             Rest-API URLs
+```
+
 The browser documentation of the code can be found at:
 ``../build/index.html``
 or under: [Documentation](https://nope-client-doc-sp.w3spaces.com/)

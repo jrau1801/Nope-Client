@@ -178,4 +178,5 @@ def menu():
         print(f"\nGenerated URL: {generated_url}\n")
 
 
-menu()
+if __name__ == '__main__':
+    menu()

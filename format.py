@@ -44,7 +44,8 @@ def print_menu():
           "[2] Join Tournament\n"
           "[3] Leave Tournament\n"
           "[4] Start Tournament\n"
-          f"[5] Disconnect: {Color.RESET}")
+          "[5] Disconnect\n"
+          f"[6] URLS: {Color.RESET}")
 
 
 def add_entry(entry):

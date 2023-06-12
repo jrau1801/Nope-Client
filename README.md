@@ -141,6 +141,8 @@ For Rest-API URLs
 ```
   Run urls.py
 ```
+or
+[Rest-API Swagger Documentation](https://nope-server.azurewebsites.net/docs/)
 
 
 <!-- Usage -->

@@ -232,6 +232,8 @@ def game_state(data, _):
 
         if player_id == current_player['id']:
             print(f"\nIts Your Turn!")
+            if last_move is not None:
+                print_move_formatted(last_move, prefix="LAST-")
             print_hand_formatted(hand, opp_hand_size)
             print_top_card_formatted(topCard)
 

@@ -1,10 +1,11 @@
-def print_move_formatted(move):
+def print_move_formatted(move, prefix=""):
     """
     Prints a formatted move for clearer output
+    :param prefix: add before move-print
     :param move: move to print
     :return: returns nothing
     """
-    print(f"\n{Color.GREEN_BACKGROUND} - {Color.BLACK_BOLD} MOVE: {Color.RESET}")
+    print(f"\n{Color.GREEN_BACKGROUND} - {Color.BLACK_BOLD} {prefix}MOVE: {Color.RESET}")
     for key, value in move.items():
         if isinstance(value, dict):
             value = ' : '.join(str(v) for v in value.values())

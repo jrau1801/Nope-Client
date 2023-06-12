@@ -1,6 +1,7 @@
 from events import *
 import time
 from format import *
+from urls import *
 
 
 def tournament_menu():
@@ -40,6 +41,9 @@ def tournament_menu():
         elif choice == "5":
             sio.disconnect()
             break
+
+        elif choice == "6":
+            menu()
 
         else:
             print("Invalid input.\n")

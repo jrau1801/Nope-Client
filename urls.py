@@ -116,7 +116,8 @@ def menu():
                            "13. Match Information\n"
                            "14. Game Information\n"
                            "15. API Documentation\n"
-                           "Enter your choice: ")
+                           "e. Exit\n"
+                           "\nEnter your choice: ")
 
         # Generate the desired URL based on the user's choice
         if url_choice == "1":

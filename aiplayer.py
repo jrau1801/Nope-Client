@@ -266,6 +266,7 @@ def check_same_color_hand_field(hand, top_card):
 def handle_only_action_left(move, hand, top_card, last_top_card):
     """
     Plays the action cards if they're the only ones left
+    :param last_top_card: top-card under see-through
     :param move: empty move
     :param hand: player hand
     :param top_card: current card at the top

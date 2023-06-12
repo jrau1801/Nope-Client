@@ -176,3 +176,7 @@ def menu():
 
         # Print the generated URL
         print(f"\nGenerated URL: {generated_url}\n")
+
+
+if __name__ == '__main__':
+    menu()

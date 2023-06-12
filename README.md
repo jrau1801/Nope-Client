@@ -95,11 +95,21 @@ In the Nope Card Game, your objective is simple: be the last player standing wit
 - Play locally
 - Documentation
 
+### AI-Player
+This game is played automatically with an ai-player. 
+To build a set and make a move, the ai-player has to follow some conditions:
 
-<!-- Getting Started -->
-## Getting Started
-
-<!-- Prerequisites -->
+- Play ``Two-Color cards`` first, ``One-Color cards`` second and ``Action cards`` last.
+- If only ``Action cards`` left, play ``see-through`` if possible, play ``reboot next``, play ``joker`` last
+- If ``top-card`` has value 3 and I can build a set but i have a ``reboot`` on hand, play ``reboot``
+- Only play ``see-through`` or ``joker`` if other cards on hand don't fit ``top-card`` color
+- Must play ``joker`` if ``action cards`` only ones left and they can fill a set
+- Must play ``reboot`` if ``see-through`` can't be played and ``joker`` can't fill a set
+- If opponents cards number >= 4 sort move ascending so highest value card will be ``top-card``
+- If opponents cards number < 4 sort move descending so lowest value will be ``top-card``
+- ``Joker-weight = 50``, ``Two-Colored-weight = 30``, ``Single-Colored weight = 20``
+- Set with highest weight will be played
+- Since I only play ``see-through`` if i have to and ``reboot`` if a special case is needed, they don't have weights
 ### Prerequisites
 
 This project uses the SocketIO-Client package

@@ -23,8 +23,7 @@ Learning Journal:
 ## About the Project
 The browser documentation of the code can be found at:
 ``../build/index.html``
-or under
-``https://nope-client-doc-sp.w3spaces.com/``
+or under: [Documentation](https://nope-client-doc-sp.w3spaces.com/)
 
 The documentation was created using Sphinx: [Sphinx](https://www.sphinx-doc.org/en/master/)
 

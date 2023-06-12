@@ -154,7 +154,7 @@ In IntelliJ IDEA this is necessary.
 </div>
 
 ```
-Run main.py two times and split them Left/Right for better usage
+Run main.py two times and split them Left/Right for better usage.
 ```
 
 ### Documentation
@@ -173,8 +173,8 @@ This is the place to go if you want to understand the code better.
 
 ```
 To run Sphinx you'll need the following command.
-And changes to conf.py are needed sometimes, when working with different directories
-Here we added syspaths for the directories we are workning in.
+And changes to conf.py are needed sometimes, when working with different directories.
+Here we added syspaths for the directories we are working in.
 ```
 
 <div align="center"> 

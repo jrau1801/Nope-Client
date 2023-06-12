@@ -176,3 +176,6 @@ def menu():
 
         # Print the generated URL
         print(f"\nGenerated URL: {generated_url}\n")
+
+
+menu()

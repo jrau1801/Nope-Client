@@ -82,42 +82,21 @@ In the Nope Card Game, your objective is simple: be the last player standing wit
 <!-- TechStack -->
 ### Tech-Stack
 
-<details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://www.python.org/">Python</a></li>
-    <li><a href="https://de.wikipedia.org/wiki/Hypertext_Markup_Language">HTML</a></li>
-    <li><a href="https://de.wikipedia.org/wiki/Cascading_Style_Sheets">CSS</a></li>
-    <li><a href="https://de.wikipedia.org/wiki/JavaScript">JavaScript</a></li>
-    <li><a href="https://socket.io/">SocketIO</a></li>
+### Client
+[![My Skills](https://skillicons.dev/icons?i=py,html,css,js&theme=light)](https://skillicons.dev)
 
-  </ul>
-</details>
+### Server
+[![My Skills](https://skillicons.dev/icons?i=azure,typescript,prisma&theme=light)](https://skillicons.dev)
 
-<details>
-  <summary>Server</summary>
-  <ul>
-    <li><a href="https://azure.microsoft.com/de-de">Microsoft Azure</a></li>
-    <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
-    <li><a href="https://socket.io/">SocketIO</a></li>
-    <li><a href="https://www.prisma.io/">Prisma</a></li>    
+### Database
 
-  </ul>
-</details>
+[![My Skills](https://skillicons.dev/icons?i=mysql,&theme=light)](https://skillicons.dev)
 
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.mysql.com/">MySQL</a></li>
-  </ul>
-</details>
 
-<details>
-<summary>DevOps</summary>
-  <ul>
-    <li><a href="https://www.docker.com/">Docker</a></li>
-  </ul>
-</details>
+### DevOps
+[![My Skills](https://skillicons.dev/icons?i=docker&theme=light)](https://skillicons.dev)
+
+
 
 <!-- Features -->
 ### Features

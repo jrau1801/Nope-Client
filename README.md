@@ -92,9 +92,6 @@ In the Nope Card Game, your objective is simple: be the last player standing wit
 [![My Skills](https://skillicons.dev/icons?i=mysql,&theme=light)](https://skillicons.dev)
 
 
-### DevOps
-[![My Skills](https://skillicons.dev/icons?i=docker&theme=light)](https://skillicons.dev)
-
 
 
 <!-- Features -->

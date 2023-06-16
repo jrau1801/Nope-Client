@@ -2,6 +2,7 @@ Nope-Client README
 -
 Learning Journal:
 [Learning Journal](https://hallowed-cattle-810.notion.site/Softwareprojekt-Lerntagebuch-e4d82e95510a4af7b133aa02e8aba444?pvs=4)
+
 Project Reflection:
 [Project Reflection](https://hallowed-cattle-810.notion.site/Reflexion-Softwareprojekt-f809269a0c7b4210885632b9ec37c6b3)
 

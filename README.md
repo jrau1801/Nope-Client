@@ -103,13 +103,13 @@ In the Nope Card Game, your objective is simple: be the last player standing wit
 - Play locally
 - Documentation
 
-### AI-Player
+## AI-Player
 This game is played automatically with an ai-player. 
 To build a set and make a move, the ai-player has to follow some conditions:
 
 - Play ``Two-Color cards`` first, ``One-Color cards`` second and ``Action cards`` last.
 - If only ``Action cards`` left, play ``see-through`` if possible, play ``reboot next``, play ``joker`` last
-- If ``top-card`` has value 3 and I can build a set but i have a ``reboot`` on hand, play ``reboot``
+- If ``top-card`` has value 3, and I can build a set but i have a ``reboot`` on hand, play ``reboot``
 - Only play ``see-through`` or ``joker`` if other cards on hand don't fit ``top-card`` color
 - Must play ``joker`` if ``action cards`` only ones left and they can fill a set
 - Must play ``reboot`` if ``see-through`` can't be played and ``joker`` can't fill a set
@@ -118,7 +118,115 @@ To build a set and make a move, the ai-player has to follow some conditions:
 - ``Joker-weight = 50``, ``Two-Colored-weight = 30``, ``Single-Colored weight = 20``
 - Set with highest weight will be played
 - Since I only play ``see-through`` if i have to and ``reboot`` if a special case is needed, they don't have weights
-### Prerequisites
+
+## Events / Client-Server Communication
+
+### Client-Side
+
+- `login(name, password)`: Handles client login.
+- `registration(name, password, firstname, lastname)`: Handles client registration.
+
+### Server-Side
+
+- `connect()`: Connects to the server.
+- `disconnect()`: Disconnects from the server.
+- `callback(data)`: Prints data on acknowledgment.
+- `player_info(data, _)`: Prints player info received from the server.
+- `tournament_info(data, _)`: Prints tournament info received from the server.
+- `match_info(data, _)`: Prints match info received from the server.
+- `list_tournaments(data, _)`: Prints a list of tournaments received from the server.
+- `make_move(data)`: Initializes the AI-player move based on the game state.
+- `game_state(data, _)`: Prints the current game state received from the server.
+- `game_status(data, _)`: Prints the game status and winner received from the server.
+
+### Client-Side to Server-Side Communication
+
+- `create_tournament(num_best_of_matches)`: Creates a tournament with the specified number of max matches.
+- `join_tournament(tournament_id)`: Joins a tournament with the given ID.
+- `leave_tournament()`: Leaves the current tournament.
+- `start_tournament()`: Starts the current tournament if successful.
+
+
+## Format
+
+### `print_move_formatted(move, prefix="")`
+
+Prints a formatted move for clearer output.
+
+- `prefix`: (optional) A string to add before the move print.
+- `move`: The move to print.
+
+
+### `print_hand_formatted(hand, opp_hand_size)`
+
+Prints a formatted hand for clearer output.
+
+- `opp_hand_size`: The number of cards the opponent has.
+- `hand`: The hand to print.
+
+### `print_top_card_formatted(top_card, prefix="")`
+
+Prints a formatted top-card for clearer output.
+
+- `prefix`: (optional) A string to add before the top-card print.
+- `top_card`: The top-card to print.
+
+### `print_menu()`
+
+Prints the menu options for the game.
+
+### `add_entry(entry)`
+
+Adds an entry to the game data.
+
+- `entry`: The entry to add.
+
+### Colors
+
+To use the utility functions, include the `Color` class for text colors and formatting. The `Color` class provides ANSI escape codes for different color variations.
+
+## Main
+### `tournament_menu()`
+
+Displays the main menu for the game, allowing users to create tournaments, join tournaments, leave tournaments, start tournaments, and disconnect from the server.
+
+### `login_menu()`
+
+Displays the login and registration menu, allowing users to log in to the server or register a new user.
+
+## URLs
+
+### Rest-API Endpoints
+
+
+### Player Endpoints
+
+- **Player URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}`
+- **Player Stats URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}/stats`
+- **Player Tournament URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}/tournaments`
+- **Player Tournaments Won URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}/tournaments/won`
+- **Player Tournaments Hosted URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}/tournaments/hosted`
+- **Player Tournaments Stats URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}/tournaments/statistics`
+- **Player Matches URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}/matches`
+- **Player Matches Won URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}/matches/won`
+- **Player Games URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}/games`
+- **Player Games Won URL:** `https://nope-server.azurewebsites.net/api/player/{spielername}/games/won`
+
+### Tournament Endpoint
+
+- **Tournament URL:** `https://nope-server.azurewebsites.net/api/tournament/{tunier_id}`
+- **Tournament Stats URL:** `https://nope-server.azurewebsites.net/api/tournament/{tunier_id}/statistic`
+
+### Match Endpoint
+
+- **Match URL:** `https://nope-server.azurewebsites.net/api/match/{match_id}`
+
+### Game Endpoint
+
+- **Game URL:** `https://nope-server.azurewebsites.net/api/game/{game_id}`
+
+
+## Prerequisites
 
 This project uses the SocketIO-Client package
 

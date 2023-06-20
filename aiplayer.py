@@ -82,8 +82,6 @@ def build(move, topCard, hand, last_top_card):
 
         matching_cards = []
 
-    move = filter_and_weigh(all_matching_cards, hand, required_count, move)
-
     if check_for_reboot(hand) and topCard['value'] == 3 and move['type'] == 'put':
         move = play_reboot_first(move, hand)
         return move

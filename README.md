@@ -13,13 +13,18 @@ Project Reflection:
 - [About the Project](#about-the-project)
   * [Tech Stack](#tech-stack)
   * [Features](#features)
+  * [AI-Player](#ai-player)
+  * [Events / Client-Server Communication](#events--client-server-communication)
+  * [Format](#format)
+  * [Colors](#colors)
+  * [Main](#main)
+  * [URLs](#urls)
 - [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Run Locally](#run-locally)
 - [Usage](#usage)
   * [Screenshots](#screenshots)
 
-  
 
 <!-- About the Project -->
 ## About the Project
